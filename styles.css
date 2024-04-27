@@ -1,0 +1,205 @@
+
+:root {
+    --fnt-primary-color :rgb(255, 255, 255);
+    --nav--color:rgb(0, 0, 0);
+    --nav-fnt-primary-color:rgb(255, 255, 255, 0.7);
+    --body-primary-color:#074973;
+    --body-secondary-color:#08678C;
+    --body-tertiary-color:rgb(2, 2, 2);
+    --body-quaternary-color:rgb(79, 8, 79);
+    --body-quinary-color:rgb(39, 10, 77);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: linear-gradient(180deg,
+    var(--body-tertiary-color)5%,
+    var(--body-quaternary-color),
+    var(--body-quinary-color),
+    var(--body-primary-color),
+    var(--body-secondary-color));
+}
+
+nav {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background:var(--nav--color);
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+nav .nav-left {
+    height: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    color: var(--fnt-primary-color);
+    text-shadow: 0 0 10px rgb(255, 255, 255, 0.1);
+}
+
+nav .nav-left span {
+    color: #1398cd;
+}
+
+nav .nav-left .nav-logo {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-left: 15px;
+}
+
+nav .nav-left .nav-logo i {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+nav .nav-links {
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex: 1;
+    text-align: center;
+}
+
+nav .nav-links a {
+    font-size: 19px;
+    text-decoration: none;
+    color: var(--nav-fnt-primary-color);
+    text-shadow: 0 0 10px rgb(255, 255, 255, 0.1);
+}
+
+.nav-right {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: last baseline;
+    justify-content: flex-end;
+    margin-bottom: 35px;
+    text-shadow: 0 0 10px rgb(255, 255, 255, 0.1);
+}
+
+.nav-right .wheel {
+    padding: 40px;
+}
+
+.nav-right .wheel i {
+    font-size: 32px;
+    cursor: pointer;
+    color: var(--nav-fnt-primary-color);
+}
+
+.welcome {
+    padding: 50px;
+    width: 100%;
+    padding: 250px 100px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.welcome h2 {
+    color: white;
+    font-size: 120px;
+    font-weight: 600;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.introducing-container {
+    display: flex;
+    padding: 40px;
+    width: 50%;
+    align-items: center;
+    background: rgb(0, 0, 0, 0.7);
+    border-radius: 25px;
+    margin-left: 30px;
+}
+
+.introducing-container .introducing {
+    font-size: 17px;
+    color: rgb(174, 174, 174);
+    letter-spacing: 0.2px;
+}
+
+.introducing-container .introducing span {
+    color: rgb(50, 156, 212);
+}
+
+.app-counter {
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 85%;
+    border-radius: 30px;
+    height: 1000px;
+    background: rgb(0, 0, 0, 0.7);
+    padding: 50px;
+}
+
+.num-selector {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    margin: 0 auto;
+    padding: 30px 250px;
+    border-radius: 60px;
+    background: linear-gradient(to bottom,
+    #0c2576,
+    #0f3669);
+    border: 3.4px solid #0306376c;
+    position: relative;
+}
+
+.num-selector h3 {
+    display: flex;
+    white-space: nowrap;
+    padding-right: 8px;
+    font-size: 25px;
+    color: rgba(255, 255, 255, 0.849);
+    text-shadow: 0 0 10px rgb(255, 255, 255, 0.1);
+    letter-spacing: 0.2px;
+}
+
+.num-selector input {
+    font-size: 25px;
+    width: 150px;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid white;
+    color: white;
+    font-weight: 500;
+    border-radius: 2px;
+}
+
+#number::-webkit-inner-spin-button,
+#number::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#number:focus {
+    outline: none;
+}
+
+.num-selector i {
+    font-size: 25px;
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 10px rgb(255, 255, 255, 0.1);
+    cursor: pointer;
+    position: absolute;
+    right: 54px;
+}
