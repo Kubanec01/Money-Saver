@@ -28,6 +28,7 @@ body {
     var(--body-quinary-color),
     var(--body-primary-color),
     var(--body-secondary-color));
+    overflow-x: hidden;
 }
 
 nav {
@@ -129,11 +130,17 @@ nav .nav-links a:hover {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    opacity: 0;
+}
+
+.welcome.fade-in {
+    opacity: 1;
+    transition: opacity 2.5s ease-in-out;
 }
 
 .welcome h2 {
     color: white;
-    font-size: 120px;
+    font-size: 118px;
     font-weight: 600;
     text-shadow: 1px 1px 20px rgba(0, 0, 0, 0.6);
 }
@@ -147,6 +154,12 @@ nav .nav-links a:hover {
     border-radius: 25px;
     margin-left: 30px;
     box-shadow: 0 2px 5px rgb(0, 0, 0, 0.7);
+    transform: translateX(-200%);
+    transition: transform 0.4s ease;
+}
+
+.introducing-container.show {
+    transform: translateX(0);
 }
 
 .introducing-container .introducing {

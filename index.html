@@ -35,7 +35,7 @@
 </section>
 
 <!-- Tato Section bude mat animaciu pri scrollovani stranky, ze sa vyhoid z boku -->
-<section class="introducing-container">
+<section class="introducing-container show">
     <div class="introducing" id="introducing">
         <p>
             Welcome to <span>Money Saver</span>. <br>
@@ -67,23 +67,23 @@
 
             <div class="food input">
                 <h3>Food:</h3>
-                    <input type="number" id="number" step="any" />
-                    <i class='bx bx-minus'></i>
-                    <i class='bx bx-plus'></i>
+                    <input class="food-input" type="number" id="number" step="any" />
+                    <i class='bx bx-minus food-minus'></i>
+                    <i class='bx bx-plus food-plus'></i>
             </div>
             
             <div class="home input">
                 <h3>Home:</h3>
-                    <input type="number" id="number" step="any" />
-                    <i class='bx bx-minus'></i>
-                    <i class='bx bx-plus'></i>
+                    <input class="home-input" type="number" id="number" step="any" />
+                    <i class='bx bx-minus home-minus'></i>
+                    <i class='bx bx-plus home-plus'></i>
             </div>
 
             <div class="fuel input">
                 <h3>Fuel:</h3>
-                    <input type="number" id="number" step="any" />
-                    <i class='bx bx-minus'></i>
-                    <i class='bx bx-plus'></i>
+                    <input class="fuel-input" type="number" id="number" step="any" />
+                    <i class='bx bx-minus fuel-minus'></i>
+                    <i class='bx bx-plus fuel-plus'></i>
             </div>
 
             <div class="fun input">
@@ -114,7 +114,7 @@
     </div>
     <div class="home category">
         <h3>Home (rent, electricity):</h3>
-        <p>0<i class='bx bx-euro'></i></p>
+        <p>0<i class='bx bx-euro money-icon'></i></p>
     </div>
     <div class="fuel category">
         <h3>Fuel (optional):</h3>
@@ -147,7 +147,8 @@
         </div>
     </footer>
 
-
+    <!-- Script -->
+    <script src="script.js"></script>
 
 </body>
 </html>
