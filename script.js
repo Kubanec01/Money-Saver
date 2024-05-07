@@ -159,4 +159,53 @@ var otherInput = document.querySelector('.other-input');
 var otherPlusTag = document.querySelector('.other-plus');
 var otherMinusTag = document.querySelector('.other-minus');
 var otherCategory = document.querySelector('.other p');
-// Sem dopln funkciu na vypocet Other kategorie
+if (!otherInput || !otherPlusTag || !otherMinusTag || !otherCategory || !moneyIcon) {
+    console.error('One of the elements was not found.');
+}
+else {
+    var newOtherCategoryValue_1;
+    otherPlusTag.addEventListener('click', function () {
+        var inputValue = parseFloat(otherInput.value);
+        if (isNaN(inputValue)) {
+            console.error('Invalid operation: Input value must be greater than zero.');
+        }
+        updateOtherCategory_1(inputValue);
+    });
+    otherMinusTag.addEventListener('click', function () {
+        var inputValue = parseFloat(otherInput.value);
+        if (!isNaN(inputValue) && inputValue > 0) {
+            updateOtherCategory_1(-inputValue);
+        }
+    });
+    var updateOtherCategory_1 = function (value) {
+        var currentCategoryValue = parseFloat(otherCategory.textContent.replace(/\D/g, ''));
+        newOtherCategoryValue_1 = currentCategoryValue + value;
+        if (newOtherCategoryValue_1 >= 0) {
+            otherCategory.textContent = "".concat(newOtherCategoryValue_1);
+            var newMoneyIcon = moneyIcon.cloneNode(true);
+            otherCategory.appendChild(newMoneyIcon);
+        }
+    };
+}
+// Delete all Categories and Inputs Values
+var deleteBtn = document.querySelector('.delete-box');
+function setCategoriesValue(iconElement) {
+    [foodCategory, homeCategory, fuelCategory, funCategory, otherCategory].forEach(function (category) {
+        var newIcon = iconElement.cloneNode(true);
+        category.textContent = '0';
+        category.appendChild(newIcon);
+    });
+}
+;
+function setInputsValue(value) {
+    [foodInput, homeInput, fuelInput, funInput, otherInput].forEach(function (elValue) {
+        elValue.value = value;
+    });
+}
+deleteBtn === null || deleteBtn === void 0 ? void 0 : deleteBtn.addEventListener('click', function () {
+    setCategoriesValue(moneyIcon);
+    setInputsValue('');
+});
+// Set Budget Circle Graph
+var budgetSelector = document.querySelector('.num-selector input');
+var goalSelector = document.querySelector('.goal-selector input');

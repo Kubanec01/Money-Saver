@@ -1,7 +1,7 @@
 // Variables
 const introContainer = document.querySelectorAll('.introducing-container');
 const welcomeContainer = document.querySelector('.welcome')
-const moneyIcon = document.querySelector('.bx.bx-euro');
+const moneyIcon = document.querySelector('.bx.bx-euro') as HTMLElement;
 
 
 window.addEventListener('scroll', checkBoxes);
@@ -191,4 +191,60 @@ const otherPlusTag = document.querySelector('.other-plus');
 const otherMinusTag = document.querySelector('.other-minus');
 const otherCategory = document.querySelector('.other p');
 
-// Sem dopln funkciu na vypocet Other kategorie
+if (!otherInput || !otherPlusTag || !otherMinusTag || !otherCategory || !moneyIcon) {
+    console.error('One of the elements was not found.');
+} else {
+    let newOtherCategoryValue: number;
+
+    otherPlusTag.addEventListener('click', () => {
+        const inputValue = parseFloat(otherInput.value);
+        if (isNaN(inputValue)) {
+            console.error('Invalid operation: Input value must be greater than zero.');
+        }
+        updateOtherCategory(inputValue)
+    })
+
+    otherMinusTag.addEventListener('click', () => {
+        const inputValue = parseFloat(otherInput.value);
+        if (!isNaN(inputValue) && inputValue > 0) {
+            updateOtherCategory(-inputValue);
+        }
+    });
+
+    const updateOtherCategory = (value: number) => {
+        const currentCategoryValue = parseFloat(otherCategory!.textContent!.replace(/\D/g, ''));
+        newOtherCategoryValue = currentCategoryValue + value;
+        if (newOtherCategoryValue >= 0) {
+            otherCategory.textContent = `${newOtherCategoryValue}`;
+            const newMoneyIcon = moneyIcon!.cloneNode(true) as HTMLElement;
+            otherCategory.appendChild(newMoneyIcon);
+        }
+    }
+}
+
+// Delete all Categories and Inputs Values
+const deleteBtn = document.querySelector('.delete-box')
+
+function setCategoriesValue (iconElement: HTMLElement) {
+    [foodCategory, homeCategory, fuelCategory, funCategory, otherCategory].forEach( category => {
+        const newIcon = iconElement.cloneNode(true) as HTMLElement;
+        category!.textContent = '0'
+        category!.appendChild(newIcon)
+    })
+};
+
+function setInputsValue (value: string) {
+    [foodInput, homeInput, fuelInput, funInput, otherInput].forEach( elValue => {
+        elValue.value = value;
+    })
+}
+
+deleteBtn?.addEventListener('click', () => {
+    setCategoriesValue(moneyIcon!);
+    setInputsValue('');
+})
+
+// Set Budget Circle Graph
+
+const budgetSelector = document.querySelector('.num-selector input');
+const goalSelector = document.querySelector('.goal-selector input');

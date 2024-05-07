@@ -319,11 +319,11 @@ nav .nav-links a:hover {
     transform: scale(0.9);
 }
 
-.repeat-box {
+.delete-box {
     display: flex;
     align-items: center;
     border-radius: 50%;
-    background: linear-gradient(to bottom,
+    background: linear-gradient(180deg,
     rgb(24, 46, 118),
     #1f4270);
     border: 2px solid #061e4dee;
@@ -332,15 +332,15 @@ nav .nav-links a:hover {
     transition: all 0.2s ease;
 }
 
-.repeat-box:hover {
+.delete-box:hover {
     transform: scale(1.1);
 }
 
-.repeat-box:active {
+.delete-box:active {
     transform: scale(0.9);
 }
 
-.repeat-box i {
+.delete-box i {
     font-size: 26px;
     cursor: pointer;
     transform: 0.5s ease;
@@ -359,6 +359,7 @@ nav .nav-links a:hover {
     margin-right: 30px;
     width: 60%;
     border-radius: 20px;
+    border: 1.5px solid rgba(255, 255, 255, 0.155);
     background-color: rgba(90, 60, 223, 0.078);
     backdrop-filter: blur(px);
     padding: 50px 100px;
