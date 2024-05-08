@@ -248,3 +248,39 @@ deleteBtn?.addEventListener('click', () => {
 
 const budgetSelector = document.querySelector('.num-selector input');
 const goalSelector = document.querySelector('.goal-selector input');
+
+const bilanceProgressBar = document.querySelector('.bilance-progressbar');
+
+function enableBudgetBar(): void {
+    if (bilanceProgressBar) {
+        bilanceProgressBar.setAttribute('role', 'bilanceProgressbar');
+        bilanceProgressBar.setAttribute('aria-valuenow', '0');
+        bilanceProgressBar.setAttribute('aria-live', 'polite');
+    }
+}
+
+enableBudgetBar();
+
+const investmentProgressBar = document.querySelector('.investment-progressbar');
+
+function enableInvestmentBar(): void {
+    if (investmentProgressBar) {
+        investmentProgressBar.setAttribute('role', 'bilanceProgressbar');
+        investmentProgressBar.setAttribute('aria-valuenow', '0');
+        investmentProgressBar.setAttribute('aria-live', 'polite');
+    }
+}
+
+enableInvestmentBar();
+
+const goalProgressBar = document.querySelector('.goal-progressbar');
+
+function enableGoalBar(): void {
+    if (goalProgressBar) {
+        goalProgressBar.setAttribute('role', 'bilanceProgressbar');
+        goalProgressBar.setAttribute('aria-valuenow', '0');
+        goalProgressBar.setAttribute('aria-live', 'polite');
+    }
+}
+
+enableGoalBar();

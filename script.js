@@ -209,3 +209,30 @@ deleteBtn === null || deleteBtn === void 0 ? void 0 : deleteBtn.addEventListener
 // Set Budget Circle Graph
 var budgetSelector = document.querySelector('.num-selector input');
 var goalSelector = document.querySelector('.goal-selector input');
+var bilanceProgressBar = document.querySelector('.bilance-progressbar');
+function enableBudgetBar() {
+    if (bilanceProgressBar) {
+        bilanceProgressBar.setAttribute('role', 'bilanceProgressbar');
+        bilanceProgressBar.setAttribute('aria-valuenow', '0');
+        bilanceProgressBar.setAttribute('aria-live', 'polite');
+    }
+}
+enableBudgetBar();
+var investmentProgressBar = document.querySelector('.investment-progressbar');
+function enableInvestmentBar() {
+    if (investmentProgressBar) {
+        investmentProgressBar.setAttribute('role', 'bilanceProgressbar');
+        investmentProgressBar.setAttribute('aria-valuenow', '0');
+        investmentProgressBar.setAttribute('aria-live', 'polite');
+    }
+}
+enableInvestmentBar();
+var goalProgressBar = document.querySelector('.goal-progressbar');
+function enableGoalBar() {
+    if (goalProgressBar) {
+        goalProgressBar.setAttribute('role', 'bilanceProgressbar');
+        goalProgressBar.setAttribute('aria-valuenow', '0');
+        goalProgressBar.setAttribute('aria-live', 'polite');
+    }
+}
+enableGoalBar();

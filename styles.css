@@ -8,6 +8,7 @@
     --body-tertiary-color:rgb(2, 2, 2);
     --body-quaternary-color:rgb(79, 8, 79);
     --body-quinary-color:rgb(39, 10, 77);
+    --pro-bar-fnt-color:rgba(0, 0, 0, 0.8);
 }
 
 * {
@@ -418,11 +419,155 @@ nav .nav-links a:hover {
 .percent-circles {
     width: 40%;
     border-radius: 30px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.836);
     backdrop-filter: blur(5px);
-    padding: 100px 100px;
-    height: 700px;
+    padding: 10px 100px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.bilance-container,
+.investment-container,
+.goal-container {
+    margin-bottom: 10px;
+} 
+
+.bilance-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.bilance-container h3 {
+    font-size: 20px;
+    padding: 10px;
+    color: var(--pro-bar-fnt-color);
+}
+
+.bilance-container p {
+    font-size: 25px;
+    padding: 6px;
+    font-weight: 600;
+    transform: translateX(-30%);
+    color: var(--pro-bar-fnt-color);
+}
+
+.bilance-container i {
+    font-size: 25px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 8px;
+    color: var(--pro-bar-fnt-color);
+}
+
+.investment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.investment-container h3 {
+    font-size: 20px;
+    padding: 10px;
+    color: var(--pro-bar-fnt-color);
+}
+
+.investment-container p {
+    font-size: 25px;
+    padding: 6px;
+    font-weight: 600;
+    transform: translateX(-30%);
+    color: var(--pro-bar-fnt-color);
+}
+
+.investment-container i {
+    font-size: 25px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 8px;
+    color: var(--pro-bar-fnt-color);
+}
+
+.goal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.goal-container h3 {
+    font-size: 20px;
+    padding: 10px;
+    color: var(--pro-bar-fnt-color);
+}
+
+.goal-container p {
+    font-size: 25px;
+    padding: 6px;
+    font-weight: 600;
+    transform: translateX(-30%);
+    color: var(--pro-bar-fnt-color);
+}
+
+.goal-container i {
+    font-size: 25px;
+    font-weight: 600;
+    position: absolute;
+    bottom: 8px;
+    color: var(--pro-bar-fnt-color);
+}
+
+[role="bilanceProgressbar"] {
+    --size: 135px;
+    --bar-width: 20px;
+
+    font-size: 2rem;
+    color: var(--pro-bar-fnt-color);
+    width: var(--size);
+    aspect-ratio: 1 / 1;
+    background: conic-gradient(
+        #4b0082 0%,   
+        #9370db 25%,  
+        #8a2be2 50%, 
+        #800080 75%,  
+        #4b0082 100% 
+    );
+    border-radius: 50%;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+
+    &::after {
+        content: attr(aria-valuenow) '%';
+        background: rgb(218, 217, 217);
+        border-radius: inherit;
+        width: calc(100% - var(--bar-width));
+        aspect-ratio: 1 / 1;
+        display: grid;
+        place-items: center;
+    }
+
+}
+
+
+
 
 footer {
     padding: 15px;
@@ -470,3 +615,4 @@ footer .footer-right a:hover {
 footer .footer-right a:active {
     transform: scale(0.8);
 }
+
