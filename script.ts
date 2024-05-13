@@ -248,10 +248,34 @@ deleteBtn?.addEventListener('click', () => {
 
 
 // Set Budget Circle Graph
-const budgetSelector = document.querySelector('.num-selector input');
-const goalSelector = document.querySelector('.goal-selector input');
-let newBudgetSelectorValue:number = 0;  
+const budgetSelector = document.querySelector('.num-selector input') as HTMLInputElement;
+let newBudgetSelectorValue: number = 0;
 
+// Budget Local Storage Selector
+window.addEventListener('load', () => {
+    const budgetStoredValue = localStorage.getItem('budgetValue');
+    if (budgetStoredValue) {
+        newBudgetSelectorValue = parseFloat(budgetStoredValue);
+        budgetSelector.value = budgetStoredValue;
+        console.log('toto je po nacitani', newBudgetSelectorValue)
+    }
+});
+
+// Get Budget Value Function
+budgetSelector.addEventListener('input', () => {
+    const budgetValue = parseFloat(budgetSelector.value);
+    if (isNaN(budgetValue) || budgetValue <= 0) {
+        newBudgetSelectorValue = 0;
+    } else {
+        newBudgetSelectorValue = budgetValue;
+    };
+
+    localStorage.setItem('budgetValue', newBudgetSelectorValue.toString());
+    console.log('toto je aktualny chod', newBudgetSelectorValue)
+});
+
+
+// Progress Bars Functions
 function allCategoriesValueCounting (a:number, b:number, c:number, d:number, e:number,) {
 
     // Bilance Progress Bar Function

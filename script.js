@@ -209,8 +209,30 @@ deleteBtn === null || deleteBtn === void 0 ? void 0 : deleteBtn.addEventListener
 });
 // Set Budget Circle Graph
 var budgetSelector = document.querySelector('.num-selector input');
-var goalSelector = document.querySelector('.goal-selector input');
 var newBudgetSelectorValue = 0;
+// Budget Local Storage Selector
+window.addEventListener('load', function () {
+    var budgetStoredValue = localStorage.getItem('budgetValue');
+    if (budgetStoredValue) {
+        newBudgetSelectorValue = parseFloat(budgetStoredValue);
+        budgetSelector.value = budgetStoredValue;
+        console.log('toto je po nacitani', newBudgetSelectorValue);
+    }
+});
+// Get Budget Value Function
+budgetSelector.addEventListener('input', function () {
+    var budgetValue = parseFloat(budgetSelector.value);
+    if (isNaN(budgetValue) || budgetValue <= 0) {
+        newBudgetSelectorValue = 0;
+    }
+    else {
+        newBudgetSelectorValue = budgetValue;
+    }
+    ;
+    localStorage.setItem('budgetValue', newBudgetSelectorValue.toString());
+    console.log('toto je aktualny chod', newBudgetSelectorValue);
+});
+// Progress Bars Functions
 function allCategoriesValueCounting(a, b, c, d, e) {
     // Bilance Progress Bar Function
     var catValue = a + b + c + d + e;

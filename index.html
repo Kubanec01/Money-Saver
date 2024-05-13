@@ -50,12 +50,12 @@
     <div class="money-inputs">
         <div class="num-selector">
             <h3>Enter Your Budget:</h3>
-            <input type="number" id="number" step="any" />
+            <input type="number" id="number" min="1" oninput="this.value = Math.abs(this.value)"/>
             <i class='bx bx-euro'></i>
         </div>
         <div class="goal-selector">
             <h3>Write Savings Goal:</h3>
-            <input type="number" id="number" step="any" />
+            <input type="number" id="number"/>
             <i class='bx bx-euro'></i>
         </div>
     </div>
@@ -67,35 +67,35 @@
 
             <div class="food input">
                 <h3>Food:</h3>
-                    <input class="food-input" type="number" id="number" step="any" />
+                    <input class="food-input" type="number" id="number" />
                     <i class='bx bx-minus food-minus'></i>
                     <i class='bx bx-plus food-plus'></i>
             </div>
             
             <div class="home input">
                 <h3>Home:</h3>
-                    <input class="home-input" type="number" id="number" step="any" />
+                    <input class="home-input" type="number" id="number"/>
                     <i class='bx bx-minus home-minus'></i>
                     <i class='bx bx-plus home-plus'></i>
             </div>
 
             <div class="fuel input">
                 <h3>Fuel:</h3>
-                    <input class="fuel-input" type="number" id="number" step="any" />
+                    <input class="fuel-input" type="number" id="number"/>
                     <i class='bx bx-minus fuel-minus'></i>
                     <i class='bx bx-plus fuel-plus'></i>
             </div>
 
             <div class="fun input">
                 <h3>Fun:</h3>
-                    <input class="fun-input" type="number" id="number" step="any" />
+                    <input class="fun-input" type="number" id="number"/>
                     <i class='bx bx-minus fun-minus'></i>
                     <i class='bx bx-plus fun-plus'></i>
             </div>
 
             <div class="other input">
                 <h3>Other:</h3>
-                    <input class="other-input" type="number" id="number" step="any" />
+                    <input class="other-input" type="number" id="number"/>
                     <i class='bx bx-minus other-minus'></i>
                     <i class='bx bx-plus other-plus'></i>
             </div>
