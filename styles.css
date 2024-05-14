@@ -410,11 +410,6 @@ nav .nav-links a:hover {
     position: relative;
 }
 
-.money-counting .category i {
-    position: absolute;
-    top: 2px;
-    font-size: 22px;
-}
 
 .percent-circles {
     width: 40%;

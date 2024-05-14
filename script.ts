@@ -1,7 +1,6 @@
 // Variables
 const introContainer = document.querySelectorAll('.introducing-container');
 const welcomeContainer = document.querySelector('.welcome')
-const moneyIcon = document.querySelector('.bx.bx-euro') as HTMLElement;
 
 
 window.addEventListener('scroll', checkBoxes);
@@ -39,10 +38,18 @@ let newOtherCategoryValue: number = 0;
 const foodInput = document.querySelector('.food-input') as HTMLInputElement;
 const foodPlusTag = document.querySelector('.food-plus');
 const foodMinusTag = document.querySelector('.food-minus');
-const foodCategory = document.querySelector('.food p');
+const foodCategory = document.querySelector('.food p') as HTMLElement;
+
+window.addEventListener('load', () => {
+    const foodStoredValue = localStorage.getItem('foodValue');
+    if (foodStoredValue) {
+        newFoodCategoryValue = parseFloat(foodStoredValue);
+        foodCategory.textContent = foodStoredValue;
+    }
+});
 
 
-if (!foodInput || !foodPlusTag || !foodMinusTag || !foodCategory || !moneyIcon) {
+if (!foodInput || !foodPlusTag || !foodMinusTag || !foodCategory ) {
     console.error('One of the elements was not found.');
 } else {
 
@@ -66,8 +73,6 @@ if (!foodInput || !foodPlusTag || !foodMinusTag || !foodCategory || !moneyIcon) 
         newFoodCategoryValue = currentCategoryValue + value;
         if (newFoodCategoryValue >= 0) {
             foodCategory!.textContent = `${newFoodCategoryValue}`;
-            const newMoneyIcon = moneyIcon!.cloneNode(true) as HTMLElement;
-            foodCategory!.appendChild(newMoneyIcon);
         } else {
             console.error('Category cannot be negative.');
         }
@@ -79,9 +84,17 @@ if (!foodInput || !foodPlusTag || !foodMinusTag || !foodCategory || !moneyIcon) 
 const homeInput = document.querySelector('.home-input') as HTMLInputElement;
 const homePlusTag = document.querySelector('.home-plus');
 const homeMinusTag = document.querySelector('.home-minus');
-const homeCategory = document.querySelector('.home p');
+const homeCategory = document.querySelector('.home p') as HTMLElement;
 
-if (!homeInput || !homePlusTag || !homeMinusTag || !homeCategory || !moneyIcon) {
+window.addEventListener('load', () => {
+    const homeStoredValue = localStorage.getItem('homeValue');
+    if (homeStoredValue) {
+        newHomeCategoryValue = parseFloat(homeStoredValue);
+        homeCategory.textContent = homeStoredValue;
+    }
+});
+
+if (!homeInput || !homePlusTag || !homeMinusTag || !homeCategory ) {
     console.error('One of the elements was not found.');
 } else {
 
@@ -105,8 +118,7 @@ if (!homeInput || !homePlusTag || !homeMinusTag || !homeCategory || !moneyIcon) 
         newHomeCategoryValue = currentCategoryValue + value;
         if (newHomeCategoryValue >= 0) {
             homeCategory!.textContent = `${newHomeCategoryValue}`;
-            const newMoneyIcon = moneyIcon!.cloneNode(true) as HTMLElement;
-            homeCategory.appendChild(newMoneyIcon);
+            localStorage.setItem('homeValue', newHomeCategoryValue.toString());
         }
     } 
 }
@@ -116,9 +128,18 @@ if (!homeInput || !homePlusTag || !homeMinusTag || !homeCategory || !moneyIcon) 
 const fuelInput = document.querySelector('.fuel-input') as HTMLInputElement;
 const fuelPlusTag = document.querySelector('.fuel-plus');
 const fuelMinusTag = document.querySelector('.fuel-minus');
-const fuelCategory = document.querySelector('.fuel p');
+const fuelCategory = document.querySelector('.fuel p') as HTMLElement;
 
-if (!fuelInput || !fuelPlusTag || !fuelMinusTag || !fuelCategory || !moneyIcon) {
+window.addEventListener('load', () => {
+    const fuelStoredValue = localStorage.getItem('fuelValue');
+    if (fuelStoredValue) {
+        newFuelCategoryValue = parseFloat(fuelStoredValue);
+        fuelCategory.textContent = fuelStoredValue;
+    }
+})
+
+
+if (!fuelInput || !fuelPlusTag || !fuelMinusTag || !fuelCategory ) {
     console.error('One of the elements was not found.');
 } else {
 
@@ -142,8 +163,7 @@ if (!fuelInput || !fuelPlusTag || !fuelMinusTag || !fuelCategory || !moneyIcon) 
         newFuelCategoryValue = currentCategoryValue + value;
         if (newFuelCategoryValue >= 0) {
             fuelCategory!.textContent = `${newFuelCategoryValue}`;
-            const newMoneyIcon = moneyIcon!.cloneNode(true) as HTMLElement;
-            fuelCategory.appendChild(newMoneyIcon);
+            localStorage.setItem('fuelValue', newFuelCategoryValue.toString());
         }
     }
 }
@@ -153,9 +173,17 @@ if (!fuelInput || !fuelPlusTag || !fuelMinusTag || !fuelCategory || !moneyIcon) 
 const funInput = document.querySelector('.fun-input') as HTMLInputElement;
 const funPlusTag = document.querySelector('.fun-plus');
 const funMinusTag = document.querySelector('.fun-minus');
-const funCategory = document.querySelector('.fun p');
+const funCategory = document.querySelector('.fun p') as HTMLElement;
 
-if (!funInput || !funPlusTag || !funMinusTag || !funCategory || !moneyIcon) {
+window.addEventListener('load', () => {
+    const funStoredValue = localStorage.getItem('funValue');
+    if (funStoredValue) {
+        newFunCategoryValue = parseFloat(funStoredValue);
+        funCategory.textContent = funStoredValue;
+    }
+})
+
+if (!funInput || !funPlusTag || !funMinusTag || !funCategory ) {
     console.error('One of the elements was not found.');
 } else {
 
@@ -177,11 +205,9 @@ if (!funInput || !funPlusTag || !funMinusTag || !funCategory || !moneyIcon) {
     const updateFunCategory = (value: number) => {
         const currentCategoryValue = parseFloat(funCategory!.textContent!.replace(/\D/g, ''));
         newFunCategoryValue = currentCategoryValue + value;
-
         if (newFunCategoryValue >= 0) {
             funCategory!.textContent = `${newFunCategoryValue}`;
-            const newMoneyIcon = moneyIcon!.cloneNode(true) as HTMLElement;
-            funCategory.appendChild(newMoneyIcon);
+            localStorage.setItem('funValue', newFunCategoryValue.toString());
         }
     }
 
@@ -192,9 +218,17 @@ if (!funInput || !funPlusTag || !funMinusTag || !funCategory || !moneyIcon) {
 const otherInput = document.querySelector('.other-input') as HTMLInputElement;
 const otherPlusTag = document.querySelector('.other-plus');
 const otherMinusTag = document.querySelector('.other-minus');
-const otherCategory = document.querySelector('.other p');
+const otherCategory = document.querySelector('.other p') as HTMLElement;
 
-if (!otherInput || !otherPlusTag || !otherMinusTag || !otherCategory || !moneyIcon) {
+window.addEventListener('load', () => {
+    const otherStoredValue = localStorage.getItem('otherValue');
+    if (otherStoredValue) {
+        newOtherCategoryValue = parseFloat(otherStoredValue);
+        otherCategory.textContent = otherStoredValue;
+    }
+})
+
+if (!otherInput || !otherPlusTag || !otherMinusTag || !otherCategory ) {
     console.error('One of the elements was not found.');
 } else {
 
@@ -218,20 +252,17 @@ if (!otherInput || !otherPlusTag || !otherMinusTag || !otherCategory || !moneyIc
         newOtherCategoryValue = currentCategoryValue + value;
         if (newOtherCategoryValue >= 0) {
             otherCategory.textContent = `${newOtherCategoryValue}`;
-            const newMoneyIcon = moneyIcon!.cloneNode(true) as HTMLElement;
-            otherCategory.appendChild(newMoneyIcon);
+            localStorage.setItem('otherValue', newOtherCategoryValue.toString());
         }
     }
 }
 
 // Delete all Categories and Inputs Values
-const deleteBtn = document.querySelector('.delete-box')
+const deleteBtn = document.querySelector('.delete-box') as HTMLButtonElement;
 
-function setCategoriesValue (iconElement: HTMLElement) {
+function setCategoriesValue (iconElement: number) {
     [foodCategory, homeCategory, fuelCategory, funCategory, otherCategory].forEach( category => {
-        const newIcon = iconElement.cloneNode(true) as HTMLElement;
-        category!.textContent = '0'
-        category!.appendChild(newIcon)
+//    Sem treba doplnit funkciu aby sa hodnota vsetkych categories nastavila na 0 a nasledne to vlozit do deleteBtn event listenera
     })
 };
 
@@ -241,8 +272,7 @@ function setInputsValue (value: string) {
     })
 }
 
-deleteBtn?.addEventListener('click', () => {
-    setCategoriesValue(moneyIcon!);
+deleteBtn.addEventListener('click', () => {
     setInputsValue('');
 })
 

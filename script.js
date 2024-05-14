@@ -1,7 +1,6 @@
 // Variables
 var introContainer = document.querySelectorAll('.introducing-container');
 var welcomeContainer = document.querySelector('.welcome');
-var moneyIcon = document.querySelector('.bx.bx-euro');
 window.addEventListener('scroll', checkBoxes);
 checkBoxes();
 function checkBoxes() {
@@ -30,7 +29,14 @@ var foodInput = document.querySelector('.food-input');
 var foodPlusTag = document.querySelector('.food-plus');
 var foodMinusTag = document.querySelector('.food-minus');
 var foodCategory = document.querySelector('.food p');
-if (!foodInput || !foodPlusTag || !foodMinusTag || !foodCategory || !moneyIcon) {
+window.addEventListener('load', function () {
+    var foodStoredValue = localStorage.getItem('foodValue');
+    if (foodStoredValue) {
+        newFoodCategoryValue = parseFloat(foodStoredValue);
+        foodCategory.textContent = foodStoredValue;
+    }
+});
+if (!foodInput || !foodPlusTag || !foodMinusTag || !foodCategory) {
     console.error('One of the elements was not found.');
 }
 else {
@@ -52,8 +58,6 @@ else {
         newFoodCategoryValue = currentCategoryValue + value;
         if (newFoodCategoryValue >= 0) {
             foodCategory.textContent = "".concat(newFoodCategoryValue);
-            var newMoneyIcon = moneyIcon.cloneNode(true);
-            foodCategory.appendChild(newMoneyIcon);
         }
         else {
             console.error('Category cannot be negative.');
@@ -65,7 +69,14 @@ var homeInput = document.querySelector('.home-input');
 var homePlusTag = document.querySelector('.home-plus');
 var homeMinusTag = document.querySelector('.home-minus');
 var homeCategory = document.querySelector('.home p');
-if (!homeInput || !homePlusTag || !homeMinusTag || !homeCategory || !moneyIcon) {
+window.addEventListener('load', function () {
+    var homeStoredValue = localStorage.getItem('homeValue');
+    if (homeStoredValue) {
+        newHomeCategoryValue = parseFloat(homeStoredValue);
+        homeCategory.textContent = homeStoredValue;
+    }
+});
+if (!homeInput || !homePlusTag || !homeMinusTag || !homeCategory) {
     console.error('One of the elements was not found.');
 }
 else {
@@ -87,8 +98,7 @@ else {
         newHomeCategoryValue = currentCategoryValue + value;
         if (newHomeCategoryValue >= 0) {
             homeCategory.textContent = "".concat(newHomeCategoryValue);
-            var newMoneyIcon = moneyIcon.cloneNode(true);
-            homeCategory.appendChild(newMoneyIcon);
+            localStorage.setItem('homeValue', newHomeCategoryValue.toString());
         }
     };
 }
@@ -97,7 +107,14 @@ var fuelInput = document.querySelector('.fuel-input');
 var fuelPlusTag = document.querySelector('.fuel-plus');
 var fuelMinusTag = document.querySelector('.fuel-minus');
 var fuelCategory = document.querySelector('.fuel p');
-if (!fuelInput || !fuelPlusTag || !fuelMinusTag || !fuelCategory || !moneyIcon) {
+window.addEventListener('load', function () {
+    var fuelStoredValue = localStorage.getItem('fuelValue');
+    if (fuelStoredValue) {
+        newFuelCategoryValue = parseFloat(fuelStoredValue);
+        fuelCategory.textContent = fuelStoredValue;
+    }
+});
+if (!fuelInput || !fuelPlusTag || !fuelMinusTag || !fuelCategory) {
     console.error('One of the elements was not found.');
 }
 else {
@@ -119,8 +136,7 @@ else {
         newFuelCategoryValue = currentCategoryValue + value;
         if (newFuelCategoryValue >= 0) {
             fuelCategory.textContent = "".concat(newFuelCategoryValue);
-            var newMoneyIcon = moneyIcon.cloneNode(true);
-            fuelCategory.appendChild(newMoneyIcon);
+            localStorage.setItem('fuelValue', newFuelCategoryValue.toString());
         }
     };
 }
@@ -129,7 +145,14 @@ var funInput = document.querySelector('.fun-input');
 var funPlusTag = document.querySelector('.fun-plus');
 var funMinusTag = document.querySelector('.fun-minus');
 var funCategory = document.querySelector('.fun p');
-if (!funInput || !funPlusTag || !funMinusTag || !funCategory || !moneyIcon) {
+window.addEventListener('load', function () {
+    var funStoredValue = localStorage.getItem('funValue');
+    if (funStoredValue) {
+        newFunCategoryValue = parseFloat(funStoredValue);
+        funCategory.textContent = funStoredValue;
+    }
+});
+if (!funInput || !funPlusTag || !funMinusTag || !funCategory) {
     console.error('One of the elements was not found.');
 }
 else {
@@ -151,8 +174,7 @@ else {
         newFunCategoryValue = currentCategoryValue + value;
         if (newFunCategoryValue >= 0) {
             funCategory.textContent = "".concat(newFunCategoryValue);
-            var newMoneyIcon = moneyIcon.cloneNode(true);
-            funCategory.appendChild(newMoneyIcon);
+            localStorage.setItem('funValue', newFunCategoryValue.toString());
         }
     };
 }
@@ -161,7 +183,14 @@ var otherInput = document.querySelector('.other-input');
 var otherPlusTag = document.querySelector('.other-plus');
 var otherMinusTag = document.querySelector('.other-minus');
 var otherCategory = document.querySelector('.other p');
-if (!otherInput || !otherPlusTag || !otherMinusTag || !otherCategory || !moneyIcon) {
+window.addEventListener('load', function () {
+    var otherStoredValue = localStorage.getItem('otherValue');
+    if (otherStoredValue) {
+        newOtherCategoryValue = parseFloat(otherStoredValue);
+        otherCategory.textContent = otherStoredValue;
+    }
+});
+if (!otherInput || !otherPlusTag || !otherMinusTag || !otherCategory) {
     console.error('One of the elements was not found.');
 }
 else {
@@ -183,8 +212,7 @@ else {
         newOtherCategoryValue = currentCategoryValue + value;
         if (newOtherCategoryValue >= 0) {
             otherCategory.textContent = "".concat(newOtherCategoryValue);
-            var newMoneyIcon = moneyIcon.cloneNode(true);
-            otherCategory.appendChild(newMoneyIcon);
+            localStorage.setItem('otherValue', newOtherCategoryValue.toString());
         }
     };
 }
@@ -192,9 +220,7 @@ else {
 var deleteBtn = document.querySelector('.delete-box');
 function setCategoriesValue(iconElement) {
     [foodCategory, homeCategory, fuelCategory, funCategory, otherCategory].forEach(function (category) {
-        var newIcon = iconElement.cloneNode(true);
-        category.textContent = '0';
-        category.appendChild(newIcon);
+        //    Sem treba doplnit funkciu aby sa hodnota vsetkych categories nastavila na 0 a nasledne to vlozit do deleteBtn event listenera
     });
 }
 ;
@@ -203,8 +229,7 @@ function setInputsValue(value) {
         elValue.value = value;
     });
 }
-deleteBtn === null || deleteBtn === void 0 ? void 0 : deleteBtn.addEventListener('click', function () {
-    setCategoriesValue(moneyIcon);
+deleteBtn.addEventListener('click', function () {
     setInputsValue('');
 });
 // Set Budget Circle Graph
