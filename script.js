@@ -58,6 +58,7 @@ else {
         newFoodCategoryValue = currentCategoryValue + value;
         if (newFoodCategoryValue >= 0) {
             foodCategory.textContent = "".concat(newFoodCategoryValue);
+            localStorage.setItem('foodValue', "".concat(newFoodCategoryValue));
         }
         else {
             console.error('Category cannot be negative.');
@@ -98,7 +99,7 @@ else {
         newHomeCategoryValue = currentCategoryValue + value;
         if (newHomeCategoryValue >= 0) {
             homeCategory.textContent = "".concat(newHomeCategoryValue);
-            localStorage.setItem('homeValue', newHomeCategoryValue.toString());
+            localStorage.setItem('homeValue', "".concat(newHomeCategoryValue));
         }
     };
 }
@@ -136,7 +137,7 @@ else {
         newFuelCategoryValue = currentCategoryValue + value;
         if (newFuelCategoryValue >= 0) {
             fuelCategory.textContent = "".concat(newFuelCategoryValue);
-            localStorage.setItem('fuelValue', newFuelCategoryValue.toString());
+            localStorage.setItem('fuelValue', "".concat(newFuelCategoryValue));
         }
     };
 }
@@ -174,7 +175,7 @@ else {
         newFunCategoryValue = currentCategoryValue + value;
         if (newFunCategoryValue >= 0) {
             funCategory.textContent = "".concat(newFunCategoryValue);
-            localStorage.setItem('funValue', newFunCategoryValue.toString());
+            localStorage.setItem('funValue', "".concat(newFunCategoryValue));
         }
     };
 }
@@ -212,27 +213,11 @@ else {
         newOtherCategoryValue = currentCategoryValue + value;
         if (newOtherCategoryValue >= 0) {
             otherCategory.textContent = "".concat(newOtherCategoryValue);
-            localStorage.setItem('otherValue', newOtherCategoryValue.toString());
+            localStorage.setItem('otherValue', "".concat(newOtherCategoryValue));
         }
     };
 }
-// Delete all Categories and Inputs Values
-var deleteBtn = document.querySelector('.delete-box');
-function setCategoriesValue(iconElement) {
-    [foodCategory, homeCategory, fuelCategory, funCategory, otherCategory].forEach(function (category) {
-        //    Sem treba doplnit funkciu aby sa hodnota vsetkych categories nastavila na 0 a nasledne to vlozit do deleteBtn event listenera
-    });
-}
-;
-function setInputsValue(value) {
-    [foodInput, homeInput, fuelInput, funInput, otherInput].forEach(function (elValue) {
-        elValue.value = value;
-    });
-}
-deleteBtn.addEventListener('click', function () {
-    setInputsValue('');
-});
-// Set Budget Circle Graph
+// Budget Input Section
 var budgetSelector = document.querySelector('.num-selector input');
 var newBudgetSelectorValue = 0;
 // Budget Local Storage Selector
@@ -241,7 +226,6 @@ window.addEventListener('load', function () {
     if (budgetStoredValue) {
         newBudgetSelectorValue = parseFloat(budgetStoredValue);
         budgetSelector.value = budgetStoredValue;
-        console.log('toto je po nacitani', newBudgetSelectorValue);
     }
 });
 // Get Budget Value Function
@@ -255,7 +239,83 @@ budgetSelector.addEventListener('input', function () {
     }
     ;
     localStorage.setItem('budgetValue', newBudgetSelectorValue.toString());
-    console.log('toto je aktualny chod', newBudgetSelectorValue);
+});
+var goalSelector = document.querySelector('.goal-selector input');
+var newGoalSelectorValue = 0;
+window.addEventListener('load', function () {
+    var goalStoredValue = localStorage.getItem('goalValue');
+    if (goalStoredValue) {
+        newGoalSelectorValue = parseFloat(goalStoredValue);
+        goalSelector.value = goalStoredValue;
+    }
+});
+budgetSelector.addEventListener('input', function () {
+    var goalValue = parseFloat(budgetSelector.value);
+    if (isNaN(goalValue) || goalValue <= 0) {
+        newGoalSelectorValue = 0;
+    }
+    else {
+        newGoalSelectorValue = goalValue;
+    }
+    localStorage.setItem('goalValue', "".concat(newGoalSelectorValue));
+});
+// Delete All Section
+function deleteBudgetValue() {
+    newBudgetSelectorValue = 0;
+    budgetSelector.value = "".concat(newBudgetSelectorValue);
+    localStorage.setItem('budgetValue', "".concat(newBudgetSelectorValue));
+}
+function deleteGoalValue() {
+    newGoalSelectorValue = 0;
+    goalSelector.value = "".concat(newGoalSelectorValue);
+    localStorage.setItem('goalValue', "".concat(newGoalSelectorValue));
+}
+function deleteCategoriesValue() {
+    newFoodCategoryValue = 0;
+    newHomeCategoryValue = 0;
+    newFuelCategoryValue = 0;
+    newFunCategoryValue = 0;
+    newOtherCategoryValue = 0;
+    localStorage.setItem('foodValue', "".concat(newFoodCategoryValue));
+    foodCategory.textContent = "".concat(newFoodCategoryValue);
+    localStorage.setItem('homeValue', "".concat(newHomeCategoryValue));
+    homeCategory.textContent = "".concat(newHomeCategoryValue);
+    localStorage.setItem('fuelValue', "".concat(newFuelCategoryValue));
+    fuelCategory.textContent = "".concat(newFuelCategoryValue);
+    localStorage.setItem('funValue', "".concat(newFunCategoryValue));
+    funCategory.textContent = "".concat(newFunCategoryValue);
+    localStorage.setItem('otherValue', "".concat(newOtherCategoryValue));
+    otherCategory.textContent = "".concat(newOtherCategoryValue);
+}
+;
+function deleteInputsValue(value) {
+    [foodInput, homeInput, fuelInput, funInput, otherInput].forEach(function (elValue) {
+        elValue.value = value;
+    });
+}
+// Delete Button function
+var deleteBtn = document.querySelector('.delete-box');
+var confirmationModal = document.getElementById('confirmation-modal');
+var NoBtn = document.getElementById('no-btn');
+var yesBtn = document.getElementById('yes-btn');
+function showModal() {
+    confirmationModal.style.display = 'block';
+}
+function hideModal() {
+    confirmationModal.style.display = 'none';
+}
+deleteBtn.addEventListener('click', function () {
+    showModal();
+});
+NoBtn.addEventListener('click', function () {
+    hideModal();
+});
+yesBtn.addEventListener('click', function () {
+    deleteInputsValue('');
+    deleteCategoriesValue();
+    deleteBudgetValue();
+    deleteGoalValue();
+    hideModal();
 });
 // Progress Bars Functions
 function allCategoriesValueCounting(a, b, c, d, e) {

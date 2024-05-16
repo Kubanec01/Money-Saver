@@ -55,7 +55,7 @@
         </div>
         <div class="goal-selector">
             <h3>Write Savings Goal:</h3>
-            <input type="number" id="number"/>
+            <input type="number" id="number" min="1" oninput="this.value = Math.abs(this.value)"/>
             <i class='bx bx-euro'></i>
         </div>
     </div>
@@ -104,6 +104,17 @@
                 <i class='bx bx-repeat'></i>
             </div>
 
+        </div>
+
+        <div id="confirmation-modal" class="modal">
+            <div class="modal-content">
+                <p>Are you sure you want to <span class="reset">reset</span> all items? <br>
+                 <span>This promotion is non-refundable!</span></p>
+                 <div class="button-content">
+                    <button id="no-btn">No</button>
+                    <button id="yes-btn">Yes</button>
+                 </div>
+            </div>
         </div>
 
         <div class="results-container">

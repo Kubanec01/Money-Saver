@@ -26,6 +26,7 @@ window.addEventListener('load', () => {
     welcomeContainer?.classList.add('fade-in');
 })
 
+
 // Categories Variables
 let newFoodCategoryValue: number = 0;
 let newHomeCategoryValue: number = 0;
@@ -73,6 +74,7 @@ if (!foodInput || !foodPlusTag || !foodMinusTag || !foodCategory ) {
         newFoodCategoryValue = currentCategoryValue + value;
         if (newFoodCategoryValue >= 0) {
             foodCategory!.textContent = `${newFoodCategoryValue}`;
+            localStorage.setItem('foodValue', `${newFoodCategoryValue}`);
         } else {
             console.error('Category cannot be negative.');
         }
@@ -118,7 +120,7 @@ if (!homeInput || !homePlusTag || !homeMinusTag || !homeCategory ) {
         newHomeCategoryValue = currentCategoryValue + value;
         if (newHomeCategoryValue >= 0) {
             homeCategory!.textContent = `${newHomeCategoryValue}`;
-            localStorage.setItem('homeValue', newHomeCategoryValue.toString());
+            localStorage.setItem('homeValue', `${newHomeCategoryValue}`);
         }
     } 
 }
@@ -163,7 +165,7 @@ if (!fuelInput || !fuelPlusTag || !fuelMinusTag || !fuelCategory ) {
         newFuelCategoryValue = currentCategoryValue + value;
         if (newFuelCategoryValue >= 0) {
             fuelCategory!.textContent = `${newFuelCategoryValue}`;
-            localStorage.setItem('fuelValue', newFuelCategoryValue.toString());
+            localStorage.setItem('fuelValue', `${newFuelCategoryValue}`);
         }
     }
 }
@@ -207,7 +209,7 @@ if (!funInput || !funPlusTag || !funMinusTag || !funCategory ) {
         newFunCategoryValue = currentCategoryValue + value;
         if (newFunCategoryValue >= 0) {
             funCategory!.textContent = `${newFunCategoryValue}`;
-            localStorage.setItem('funValue', newFunCategoryValue.toString());
+            localStorage.setItem('funValue', `${newFunCategoryValue}`);
         }
     }
 
@@ -252,32 +254,13 @@ if (!otherInput || !otherPlusTag || !otherMinusTag || !otherCategory ) {
         newOtherCategoryValue = currentCategoryValue + value;
         if (newOtherCategoryValue >= 0) {
             otherCategory.textContent = `${newOtherCategoryValue}`;
-            localStorage.setItem('otherValue', newOtherCategoryValue.toString());
+            localStorage.setItem('otherValue', `${newOtherCategoryValue}`);
         }
     }
 }
 
-// Delete all Categories and Inputs Values
-const deleteBtn = document.querySelector('.delete-box') as HTMLButtonElement;
 
-function setCategoriesValue (iconElement: number) {
-    [foodCategory, homeCategory, fuelCategory, funCategory, otherCategory].forEach( category => {
-//    Sem treba doplnit funkciu aby sa hodnota vsetkych categories nastavila na 0 a nasledne to vlozit do deleteBtn event listenera
-    })
-};
-
-function setInputsValue (value: string) {
-    [foodInput, homeInput, fuelInput, funInput, otherInput].forEach( elValue => {
-        elValue.value = value;
-    })
-}
-
-deleteBtn.addEventListener('click', () => {
-    setInputsValue('');
-})
-
-
-// Set Budget Circle Graph
+// Budget Input Section
 const budgetSelector = document.querySelector('.num-selector input') as HTMLInputElement;
 let newBudgetSelectorValue: number = 0;
 
@@ -287,7 +270,6 @@ window.addEventListener('load', () => {
     if (budgetStoredValue) {
         newBudgetSelectorValue = parseFloat(budgetStoredValue);
         budgetSelector.value = budgetStoredValue;
-        console.log('toto je po nacitani', newBudgetSelectorValue)
     }
 });
 
@@ -299,10 +281,104 @@ budgetSelector.addEventListener('input', () => {
     } else {
         newBudgetSelectorValue = budgetValue;
     };
-
     localStorage.setItem('budgetValue', newBudgetSelectorValue.toString());
-    console.log('toto je aktualny chod', newBudgetSelectorValue)
 });
+
+const goalSelector = document.querySelector('.goal-selector input') as HTMLInputElement;
+let newGoalSelectorValue: number = 0;
+
+window.addEventListener('load', () => {
+    const goalStoredValue = localStorage.getItem('goalValue');
+    if (goalStoredValue) {
+        newGoalSelectorValue = parseFloat(goalStoredValue);
+        goalSelector.value = goalStoredValue;
+    }
+});
+
+budgetSelector.addEventListener('input', () => {
+    const goalValue = parseFloat(budgetSelector.value);
+    if (isNaN(goalValue) || goalValue <= 0) {
+        newGoalSelectorValue = 0;
+    } else {
+        newGoalSelectorValue = goalValue;
+    }
+    localStorage.setItem('goalValue', `${newGoalSelectorValue}`)
+});
+
+
+
+// Delete All Section
+function deleteBudgetValue () {
+    newBudgetSelectorValue = 0;
+    budgetSelector.value = `${newBudgetSelectorValue}`;
+    localStorage.setItem('budgetValue', `${newBudgetSelectorValue}`);
+}
+
+function deleteGoalValue () {
+    newGoalSelectorValue = 0;
+    goalSelector.value = `${newGoalSelectorValue}`;
+    localStorage.setItem('goalValue', `${newGoalSelectorValue}`);
+}
+
+function deleteCategoriesValue () {
+    newFoodCategoryValue = 0;
+    newHomeCategoryValue  = 0;
+    newFuelCategoryValue  = 0;
+    newFunCategoryValue  = 0;
+    newOtherCategoryValue  = 0;
+
+    localStorage.setItem('foodValue', `${newFoodCategoryValue}`);
+    foodCategory.textContent = `${newFoodCategoryValue}`;
+
+    localStorage.setItem('homeValue', `${newHomeCategoryValue}`);
+    homeCategory.textContent = `${newHomeCategoryValue}`;
+
+    localStorage.setItem('fuelValue', `${newFuelCategoryValue}`);
+    fuelCategory.textContent = `${newFuelCategoryValue}`;
+    
+    localStorage.setItem('funValue', `${newFunCategoryValue}`);
+    funCategory.textContent = `${newFunCategoryValue}`;
+
+    localStorage.setItem('otherValue', `${newOtherCategoryValue}`);
+    otherCategory.textContent = `${newOtherCategoryValue}`;
+};
+
+function deleteInputsValue (value: string) {
+    [foodInput, homeInput, fuelInput, funInput, otherInput].forEach( elValue => {
+        elValue.value = value;
+    })
+}
+
+// Delete Button function
+const deleteBtn = document.querySelector('.delete-box') as HTMLButtonElement;
+const confirmationModal = document.getElementById('confirmation-modal') as HTMLElement;
+const NoBtn = document.getElementById('no-btn') as HTMLButtonElement;
+const yesBtn = document.getElementById('yes-btn') as HTMLButtonElement;
+
+function showModal () {
+    confirmationModal.style.display = 'block';
+}
+
+function hideModal () {
+    confirmationModal.style.display = 'none';
+}
+
+
+deleteBtn.addEventListener('click', () => {
+    showModal();
+})
+
+NoBtn.addEventListener('click', () => {
+    hideModal();
+})
+
+yesBtn.addEventListener('click', () => {
+    deleteInputsValue('');
+    deleteCategoriesValue();
+    deleteBudgetValue();
+    deleteGoalValue();
+    hideModal();
+})
 
 
 // Progress Bars Functions

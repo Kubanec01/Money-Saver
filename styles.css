@@ -347,6 +347,87 @@ nav .nav-links a:hover {
     transform: 0.5s ease;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    margin: 0 auto;
+    top: 30%;
+    width: 30%;
+    height: 250px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.984);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgb(0, 0, 0, 0.2);
+    border: 3px solid #325d95;
+
+}
+
+.modal .modal-content {
+    border-radius: 20px;
+    background: transparent;
+    border: 3px solid #3566a752;
+    padding: 25px;
+    margin: 4.8% auto;
+    width: 80%;
+    text-align: center;
+}
+
+.modal .modal-content p {
+    width: 100%; 
+    margin: 0 auto; 
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.modal .modal-content p span {
+    color: rgb(181, 9, 9);
+}
+
+.modal .modal-content p span.reset {
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: 800;
+}
+
+.modal .modal-content .button-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 70px;
+}
+
+.modal .modal-content .button-content button {
+    width: 40%;
+    height: 30px;
+    cursor: pointer;
+    background: linear-gradient(to bottom,
+    #192d6b,
+    #3765a0);
+    border: 2px solid rgba(51, 51, 118, 0.733);
+    border-radius: 4px;
+    color: white;
+    box-shadow: 0 0 30px rgb(0, 0, 0, 0.1);
+}
+
+.modal .modal-content .button-content button:hover {
+    animation: growAndDown 1.4s infinite ease-in-out;
+}
+
+@keyframes growAndDown {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 .results-container {
     display: flex;
     align-items: center;
