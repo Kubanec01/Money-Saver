@@ -240,6 +240,7 @@ budgetSelector.addEventListener('input', function () {
     ;
     localStorage.setItem('budgetValue', newBudgetSelectorValue.toString());
 });
+// Goal Input Section
 var goalSelector = document.querySelector('.goal-selector input');
 var newGoalSelectorValue = 0;
 window.addEventListener('load', function () {
@@ -249,8 +250,8 @@ window.addEventListener('load', function () {
         goalSelector.value = goalStoredValue;
     }
 });
-budgetSelector.addEventListener('input', function () {
-    var goalValue = parseFloat(budgetSelector.value);
+goalSelector.addEventListener('input', function () {
+    var goalValue = parseFloat(goalSelector.value);
     if (isNaN(goalValue) || goalValue <= 0) {
         newGoalSelectorValue = 0;
     }
@@ -318,62 +319,75 @@ yesBtn.addEventListener('click', function () {
     hideModal();
 });
 // Progress Bars Functions
-function allCategoriesValueCounting(a, b, c, d, e) {
+function getNumfromLocalStorage(key) {
+    var value = localStorage.getItem(key);
+    return value !== null ? parseFloat(value) : 0;
+}
+function allCategoriesValueCounting() {
+    var foodValue = getNumfromLocalStorage('foodValue');
+    var homeValue = getNumfromLocalStorage('homeValue');
+    var fuelValue = getNumfromLocalStorage('fuelValue');
+    var funValue = getNumfromLocalStorage('funValue');
+    var otherValue = getNumfromLocalStorage('otherValue');
+    var budgetValue = getNumfromLocalStorage('budgetValue');
+    console.log(budgetValue);
     // Bilance Progress Bar Function
-    var catValue = a + b + c + d + e;
-    var currentBudget = newBudgetSelectorValue - catValue;
-    var percentageBudget = Math.round(currentBudget / newBudgetSelectorValue * 100);
+    var catValue = foodValue + homeValue + fuelValue + funValue + otherValue + budgetValue;
+    var currentBudget = budgetValue - catValue;
+    var percentageBudget = Math.round((currentBudget / budgetValue) * 100);
     if (isNaN(percentageBudget)) {
         percentageBudget = 0;
     }
     // Fun & Other Progress Bar function
-    var funAndOtherValue = d + e;
-    var percentageCosts = Math.round(funAndOtherValue / catValue * 100);
+    var funAndOtherValue = funValue + otherValue;
+    var percentageCosts = Math.round((funAndOtherValue / catValue) * 100);
     if (isNaN(percentageCosts)) {
         percentageCosts = 0;
     }
     // Spent Progress Bar function
-    var percentageSpent = Math.round(catValue / newBudgetSelectorValue * 100);
+    var percentageSpent = Math.round((catValue / currentBudget) * 100);
     if (isNaN(percentageSpent)) {
         percentageSpent = 0;
     }
     return {
-        catValue: catValue,
-        percentageSpent: percentageSpent,
-        funAndOtherValue: funAndOtherValue,
+        percentageBudget: percentageBudget,
         percentageCosts: percentageCosts,
+        funAndOtherValue: funAndOtherValue,
+        percentageSpent: percentageSpent,
+        catValue: catValue,
         currentBudget: currentBudget,
-        percentageBudget: percentageBudget
     };
 }
-var budgetCategoriesResult = allCategoriesValueCounting(newFoodCategoryValue, newHomeCategoryValue, newFuelCategoryValue, newFunCategoryValue, newOtherCategoryValue);
 // Spent Progress Bar
 var spentProgressBar = document.querySelector('.spent-progressbar');
 function enableBudgetBar() {
+    var _a = allCategoriesValueCounting(), percentageSpent = _a.percentageSpent, catValue = _a.catValue;
     if (spentProgressBar) {
         spentProgressBar.setAttribute('role', "progressBar");
-        spentProgressBar.setAttribute('aria-valuenow', budgetCategoriesResult.percentageSpent.toString());
-        spentProgressBar.setAttribute('aria-live', budgetCategoriesResult.catValue.toString());
+        spentProgressBar.setAttribute('aria-valuenow', percentageSpent.toString());
+        spentProgressBar.setAttribute('aria-live', catValue.toString());
     }
 }
 enableBudgetBar();
 // Investment Progress Bar
 var investmentProgressBar = document.querySelector('.investment-progressbar');
 function enableInvestmentBar() {
+    var _a = allCategoriesValueCounting(), percentageCosts = _a.percentageCosts, funAndOtherValue = _a.funAndOtherValue;
     if (investmentProgressBar) {
         investmentProgressBar.setAttribute('role', 'progressBar');
-        investmentProgressBar.setAttribute('aria-valuenow', budgetCategoriesResult.percentageCosts.toString());
-        investmentProgressBar.setAttribute('aria-live', budgetCategoriesResult.funAndOtherValue.toString());
+        investmentProgressBar.setAttribute('aria-valuenow', percentageCosts.toString());
+        investmentProgressBar.setAttribute('aria-live', funAndOtherValue.toString());
     }
 }
 enableInvestmentBar();
 // Goal progress bar
 var goalProgressBar = document.querySelector('.goal-progressbar');
 function enableGoalBar() {
+    var _a = allCategoriesValueCounting(), percentageBudget = _a.percentageBudget, currentBudget = _a.currentBudget;
     if (goalProgressBar) {
         goalProgressBar.setAttribute('role', 'progressBar');
-        goalProgressBar.setAttribute('aria-valuenow', budgetCategoriesResult.percentageBudget.toString());
-        goalProgressBar.setAttribute('aria-live', budgetCategoriesResult.currentBudget.toString());
+        goalProgressBar.setAttribute('aria-valuenow', percentageBudget.toString());
+        goalProgressBar.setAttribute('aria-live', currentBudget.toString());
     }
 }
 enableGoalBar();
