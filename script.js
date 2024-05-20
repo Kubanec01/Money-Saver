@@ -24,6 +24,7 @@ var newHomeCategoryValue = 0;
 var newFuelCategoryValue = 0;
 var newFunCategoryValue = 0;
 var newOtherCategoryValue = 0;
+var newBudgetSelectorValue = 1;
 // Food Input Function
 var foodInput = document.querySelector('.food-input');
 var foodPlusTag = document.querySelector('.food-plus');
@@ -46,12 +47,18 @@ else {
             console.error('Invalid operation: Input value must be greater than zero.');
         }
         updateFoodCategory_1(inputValue);
+        enableBudgetBar();
+        enableInvestmentBar();
+        enableGoalBar();
     });
     foodMinusTag.addEventListener('click', function () {
         var inputValue = parseFloat(foodInput.value);
         if (!isNaN(inputValue) && inputValue > 0) {
             updateFoodCategory_1(-inputValue);
         }
+        enableBudgetBar();
+        enableInvestmentBar();
+        enableGoalBar();
     });
     var updateFoodCategory_1 = function (value) {
         var currentCategoryValue = parseFloat(foodCategory.textContent.replace(/\D/g, ''));
@@ -87,12 +94,18 @@ else {
             console.error('Invalid operation: Input value must be greater than zero.');
         }
         updateHomeCategory_1(inputValue);
+        enableBudgetBar();
+        enableInvestmentBar();
+        enableGoalBar();
     });
     homeMinusTag.addEventListener('click', function () {
         var inputValue = parseFloat(homeInput.value);
         if (!isNaN(inputValue) && inputValue > 0) {
             updateHomeCategory_1(-inputValue);
         }
+        enableBudgetBar();
+        enableInvestmentBar();
+        enableGoalBar();
     });
     var updateHomeCategory_1 = function (value) {
         var currentCategoryValue = parseFloat(homeCategory.textContent.replace(/\D/g, ''));
@@ -125,12 +138,18 @@ else {
             console.error('Invalid operation: Input value must be greater than zero.');
         }
         updateFuelCategory_1(inputValue);
+        enableBudgetBar();
+        enableInvestmentBar();
+        enableGoalBar();
     });
     fuelMinusTag.addEventListener('click', function () {
         var inputValue = parseFloat(fuelInput.value);
         if (!isNaN(inputValue) && inputValue > 0) {
             updateFuelCategory_1(-inputValue);
         }
+        enableBudgetBar();
+        enableInvestmentBar();
+        enableGoalBar();
     });
     var updateFuelCategory_1 = function (value) {
         var currentCategoryValue = parseFloat(fuelCategory.textContent.replace(/\D/g, ''));
@@ -163,12 +182,18 @@ else {
             console.error('Invalid operation: Input value must be greater than zero.');
         }
         updateFunCategory_1(inputValue);
+        enableBudgetBar();
+        enableInvestmentBar();
+        enableGoalBar();
     });
     funMinusTag.addEventListener('click', function () {
         var inputValue = parseFloat(funInput.value);
         if (!isNaN(inputValue) && inputValue > 0) {
             updateFunCategory_1(-inputValue);
         }
+        enableBudgetBar();
+        enableInvestmentBar();
+        enableGoalBar();
     });
     var updateFunCategory_1 = function (value) {
         var currentCategoryValue = parseFloat(funCategory.textContent.replace(/\D/g, ''));
@@ -201,12 +226,18 @@ else {
             console.error('Invalid operation: Input value must be greater than zero.');
         }
         updateOtherCategory_1(inputValue);
+        enableBudgetBar();
+        enableInvestmentBar();
+        enableGoalBar();
     });
     otherMinusTag.addEventListener('click', function () {
         var inputValue = parseFloat(otherInput.value);
         if (!isNaN(inputValue) && inputValue > 0) {
             updateOtherCategory_1(-inputValue);
         }
+        enableBudgetBar();
+        enableInvestmentBar();
+        enableGoalBar();
     });
     var updateOtherCategory_1 = function (value) {
         var currentCategoryValue = parseFloat(otherCategory.textContent.replace(/\D/g, ''));
@@ -219,7 +250,7 @@ else {
 }
 // Budget Input Section
 var budgetSelector = document.querySelector('.num-selector input');
-var newBudgetSelectorValue = 0;
+var enterBudgetBtn = document.getElementById('budget-enter');
 // Budget Local Storage Selector
 window.addEventListener('load', function () {
     var budgetStoredValue = localStorage.getItem('budgetValue');
@@ -229,16 +260,20 @@ window.addEventListener('load', function () {
     }
 });
 // Get Budget Value Function
-budgetSelector.addEventListener('input', function () {
+enterBudgetBtn.addEventListener('click', function () {
     var budgetValue = parseFloat(budgetSelector.value);
     if (isNaN(budgetValue) || budgetValue <= 0) {
-        newBudgetSelectorValue = 0;
+        alert('The budget must be at least 1€');
     }
     else {
         newBudgetSelectorValue = budgetValue;
     }
     ;
     localStorage.setItem('budgetValue', newBudgetSelectorValue.toString());
+    console.log('toto je nova budget hdnota', newBudgetSelectorValue);
+    enableBudgetBar();
+    enableInvestmentBar();
+    enableGoalBar();
 });
 // Goal Input Section
 var goalSelector = document.querySelector('.goal-selector input');
@@ -261,22 +296,14 @@ goalSelector.addEventListener('input', function () {
     localStorage.setItem('goalValue', "".concat(newGoalSelectorValue));
 });
 // Delete All Section
-function deleteBudgetValue() {
-    newBudgetSelectorValue = 0;
-    budgetSelector.value = "".concat(newBudgetSelectorValue);
-    localStorage.setItem('budgetValue', "".concat(newBudgetSelectorValue));
-}
-function deleteGoalValue() {
-    newGoalSelectorValue = 0;
-    goalSelector.value = "".concat(newGoalSelectorValue);
-    localStorage.setItem('goalValue', "".concat(newGoalSelectorValue));
-}
 function deleteCategoriesValue() {
     newFoodCategoryValue = 0;
     newHomeCategoryValue = 0;
     newFuelCategoryValue = 0;
     newFunCategoryValue = 0;
     newOtherCategoryValue = 0;
+    newGoalSelectorValue = 0;
+    newBudgetSelectorValue = 1;
     localStorage.setItem('foodValue', "".concat(newFoodCategoryValue));
     foodCategory.textContent = "".concat(newFoodCategoryValue);
     localStorage.setItem('homeValue', "".concat(newHomeCategoryValue));
@@ -287,6 +314,10 @@ function deleteCategoriesValue() {
     funCategory.textContent = "".concat(newFunCategoryValue);
     localStorage.setItem('otherValue', "".concat(newOtherCategoryValue));
     otherCategory.textContent = "".concat(newOtherCategoryValue);
+    goalSelector.value = "".concat(newGoalSelectorValue);
+    localStorage.setItem('goalValue', "".concat(newGoalSelectorValue));
+    budgetSelector.value = "".concat(newBudgetSelectorValue);
+    localStorage.setItem('budgetValue', "".concat(newBudgetSelectorValue));
 }
 ;
 function deleteInputsValue(value) {
@@ -314,9 +345,10 @@ NoBtn.addEventListener('click', function () {
 yesBtn.addEventListener('click', function () {
     deleteInputsValue('');
     deleteCategoriesValue();
-    deleteBudgetValue();
-    deleteGoalValue();
     hideModal();
+    enableBudgetBar();
+    enableInvestmentBar();
+    enableGoalBar();
 });
 // Progress Bars Functions
 function getNumfromLocalStorage(key) {
@@ -330,11 +362,10 @@ function allCategoriesValueCounting() {
     var funValue = getNumfromLocalStorage('funValue');
     var otherValue = getNumfromLocalStorage('otherValue');
     var budgetValue = getNumfromLocalStorage('budgetValue');
-    console.log(budgetValue);
     // Bilance Progress Bar Function
-    var catValue = foodValue + homeValue + fuelValue + funValue + otherValue + budgetValue;
-    var currentBudget = budgetValue - catValue;
-    var percentageBudget = Math.round((currentBudget / budgetValue) * 100);
+    var catValue = foodValue + homeValue + fuelValue + funValue + otherValue;
+    var bilanceBudget = budgetValue - catValue;
+    var percentageBudget = Math.round((bilanceBudget / budgetValue) * 100);
     if (isNaN(percentageBudget)) {
         percentageBudget = 0;
     }
@@ -345,7 +376,7 @@ function allCategoriesValueCounting() {
         percentageCosts = 0;
     }
     // Spent Progress Bar function
-    var percentageSpent = Math.round((catValue / currentBudget) * 100);
+    var percentageSpent = Math.round((catValue / budgetValue) * 100);
     if (isNaN(percentageSpent)) {
         percentageSpent = 0;
     }
@@ -355,7 +386,7 @@ function allCategoriesValueCounting() {
         funAndOtherValue: funAndOtherValue,
         percentageSpent: percentageSpent,
         catValue: catValue,
-        currentBudget: currentBudget,
+        bilanceBudget: bilanceBudget,
     };
 }
 // Spent Progress Bar
@@ -383,11 +414,11 @@ enableInvestmentBar();
 // Goal progress bar
 var goalProgressBar = document.querySelector('.goal-progressbar');
 function enableGoalBar() {
-    var _a = allCategoriesValueCounting(), percentageBudget = _a.percentageBudget, currentBudget = _a.currentBudget;
+    var _a = allCategoriesValueCounting(), percentageBudget = _a.percentageBudget, bilanceBudget = _a.bilanceBudget;
     if (goalProgressBar) {
         goalProgressBar.setAttribute('role', 'progressBar');
         goalProgressBar.setAttribute('aria-valuenow', percentageBudget.toString());
-        goalProgressBar.setAttribute('aria-live', currentBudget.toString());
+        goalProgressBar.setAttribute('aria-live', bilanceBudget.toString());
     }
 }
 enableGoalBar();

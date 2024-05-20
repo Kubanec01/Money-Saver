@@ -257,6 +257,20 @@ nav .nav-links a:hover {
     cursor: pointer;
     position: absolute;
     right: 42px;
+    transition: all 0.1s ease-in-out;
+}
+
+.goal-selector i {
+    cursor: default !important;
+}
+
+.num-selector i#budget-enter:hover {
+    transform: scale(1.1);
+    color: #a4d4e7;
+}
+
+.num-selector i#budget-enter:active {
+    transform: scale(0.9);
 }
 
 .money-counting {
