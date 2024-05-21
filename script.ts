@@ -436,7 +436,7 @@ function allCategoriesValueCounting () {
     const catValue = foodValue + homeValue + fuelValue + funValue + otherValue;
     const bilanceBudget = budgetValue - catValue;
     let percentageBudget = Math.round((bilanceBudget / budgetValue) * 100);
-    if (isNaN(percentageBudget)) {
+    if (isNaN(percentageBudget) || percentageBudget < 0) {
         percentageBudget = 0;
     }
 
@@ -445,13 +445,21 @@ function allCategoriesValueCounting () {
     let percentageCosts = Math.round((funAndOtherValue / catValue) * 100);
     if (isNaN(percentageCosts)) {
         percentageCosts = 0;
+    } else if (percentageCosts > 100) {
+        percentageCosts = 100;
     }
    
     // Spent Progress Bar function
     let percentageSpent = Math.round((catValue / budgetValue) * 100);
     if (isNaN(percentageSpent)) {
         percentageSpent = 0;
+    } else if (percentageSpent > 999) {
+        percentageSpent = 999;
     }
+
+
+    console.log('Final percentageSpent:', percentageSpent);
+
 
 
 
