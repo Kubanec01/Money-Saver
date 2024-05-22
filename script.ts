@@ -26,6 +26,19 @@ window.addEventListener('load', () => {
     welcomeContainer?.classList.add('fade-in');
 })
 
+// Information Container Function
+const questionMark = document.querySelector('.bx-question-mark') as HTMLElement;
+const infoBox = document.querySelector('.info-window') as HTMLElement;
+
+    questionMark.addEventListener('mousemove', () => {
+        infoBox.style.setProperty('display', 'flex', 'important');
+    });
+
+    questionMark.addEventListener('mouseleave', () => {
+        infoBox.style.setProperty('display', 'none', 'important');
+    });
+
+
 
 // Categories Variables
 let newFoodCategoryValue: number = 0;
@@ -453,19 +466,17 @@ function allCategoriesValueCounting () {
     let percentageSpent = Math.round((catValue / budgetValue) * 100);
     if (isNaN(percentageSpent)) {
         percentageSpent = 0;
-    } else if (percentageSpent > 999) {
-        percentageSpent = 999;
+    } else if (percentageSpent > 100) {
+        percentageSpent = 100;
     }
 
-
-    console.log('Final percentageSpent:', percentageSpent);
-
-
+    const gradient = `#6e1da7 ${percentageSpent}%, transparent ${percentageSpent}%`;
 
 
     return {
         percentageBudget,
         percentageCosts,
+        gradient,
         funAndOtherValue,
         percentageSpent,
         catValue,
@@ -479,11 +490,12 @@ function allCategoriesValueCounting () {
 const spentProgressBar = document.querySelector('.spent-progressbar');
 
 function enableBudgetBar(): void {
-    const { percentageSpent, catValue } = allCategoriesValueCounting();
+    const { percentageSpent, catValue, gradient } = allCategoriesValueCounting();
     if (spentProgressBar) {
         spentProgressBar.setAttribute('role', "progressBar");
+        spentProgressBar.setAttribute('style', `background: conic-gradient(${gradient});`);
         spentProgressBar.setAttribute('aria-valuenow', percentageSpent.toString());
-        spentProgressBar.setAttribute('aria-live', catValue.toString());
+        spentProgressBar.setAttribute('aria-live', `${catValue}`);
     }
 }
 enableBudgetBar();

@@ -18,6 +18,15 @@ function checkBoxes() {
 window.addEventListener('load', function () {
     welcomeContainer === null || welcomeContainer === void 0 ? void 0 : welcomeContainer.classList.add('fade-in');
 });
+// Information Container Function
+var questionMark = document.querySelector('.bx-question-mark');
+var infoBox = document.querySelector('.info-window');
+questionMark.addEventListener('mousemove', function () {
+    infoBox.style.setProperty('display', 'flex', 'important');
+});
+questionMark.addEventListener('mouseleave', function () {
+    infoBox.style.setProperty('display', 'none', 'important');
+});
 // Categories Variables
 var newFoodCategoryValue = 0;
 var newHomeCategoryValue = 0;
@@ -383,13 +392,14 @@ function allCategoriesValueCounting() {
     if (isNaN(percentageSpent)) {
         percentageSpent = 0;
     }
-    else if (percentageSpent > 999) {
-        percentageSpent = 999;
+    else if (percentageSpent > 100) {
+        percentageSpent = 100;
     }
-    console.log('Final percentageSpent:', percentageSpent);
+    var gradient = "#6e1da7 ".concat(percentageSpent, "%, transparent ").concat(percentageSpent, "%");
     return {
         percentageBudget: percentageBudget,
         percentageCosts: percentageCosts,
+        gradient: gradient,
         funAndOtherValue: funAndOtherValue,
         percentageSpent: percentageSpent,
         catValue: catValue,
@@ -399,11 +409,12 @@ function allCategoriesValueCounting() {
 // Spent Progress Bar
 var spentProgressBar = document.querySelector('.spent-progressbar');
 function enableBudgetBar() {
-    var _a = allCategoriesValueCounting(), percentageSpent = _a.percentageSpent, catValue = _a.catValue;
+    var _a = allCategoriesValueCounting(), percentageSpent = _a.percentageSpent, catValue = _a.catValue, gradient = _a.gradient;
     if (spentProgressBar) {
         spentProgressBar.setAttribute('role', "progressBar");
+        spentProgressBar.setAttribute('style', "background: conic-gradient(".concat(gradient, ");"));
         spentProgressBar.setAttribute('aria-valuenow', percentageSpent.toString());
-        spentProgressBar.setAttribute('aria-live', catValue.toString());
+        spentProgressBar.setAttribute('aria-live', "".concat(catValue));
     }
 }
 enableBudgetBar();

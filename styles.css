@@ -116,11 +116,59 @@ nav .nav-links a:hover {
     font-size: 32px;
     cursor: pointer;
     color: var(--nav-fnt-primary-color);
-    transition: all 0.4s linear;
+    transition: all 0.3s linear;
+    border: 2px solid var(--nav-fnt-primary-color);
+    border-radius: 50%;
 }
 
 .nav-right .wheel i:hover {
-    transform: rotate(300deg);
+    transform: rotate(360deg);
+}
+
+.info-window {
+    display: none !important;
+    position: fixed;
+    height: 400px;
+    width: 400px;
+    background: rgba(0, 0, 0, 0.938);
+    color: rgba(245, 245, 81, 0.785);
+    top: 35px;
+    right: 100px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid rgb(255, 255, 255, 0.1);
+    animation: opacity-up 0.3s;
+}
+
+@keyframes opacity-up {
+    0% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+.info-window .info-box {
+    padding: 30px 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-window .info-box h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: rgb(250, 211, 34);
+}
+
+.info-window .info-box ol li {
+    font-size: 16px;
+    margin-bottom: 15px;
 }
 
 .welcome {
@@ -531,7 +579,7 @@ nav .nav-links a:hover {
 .percent-circles {
     width: 40%;
     border-radius: 30px;
-    background: rgba(255, 255, 255, 0.620);
+    background: rgba(255, 255, 255, 0.626);
     backdrop-filter: blur(5px);
     padding: 0 100px 20px;
     margin-bottom: 25px;
@@ -572,18 +620,17 @@ nav .nav-links a:hover {
     color: var(--pro-bar-fnt-color);
     width: var(--size);
     aspect-ratio: 1 / 1;
+
     background: conic-gradient(
-        #4b0082 0%,   
-        #9370db 25%,  
-        #8a2be2 50%, 
-        #800080 75%,  
-        #4b0082 100% 
+        #6e1da7 0%,  
     );
+
     border-radius: 50%;
     margin: 0 auto;
     display: grid;
     place-items: center;
     position: relative;
+    
 
     &::before {
         content: attr(aria-valuenow) '%';
@@ -653,4 +700,3 @@ footer .footer-right a:hover {
 footer .footer-right a:active {
     transform: scale(0.8);
 }
-
