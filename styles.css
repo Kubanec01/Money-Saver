@@ -4,7 +4,7 @@
     --nav--color:rgb(0, 0, 0);
     --nav-fnt-primary-color:rgb(255, 255, 255, 0.7);
     --body-primary-color:#074973;
-    --body-secondary-color:#08678C;
+    --body-secondary-color:#124a60;
     --body-tertiary-color:rgb(2, 2, 2);
     --body-quaternary-color:rgb(79, 8, 79);
     --body-quinary-color:rgb(39, 10, 77);
@@ -113,7 +113,7 @@ nav .nav-links a:hover {
 }
 
 .nav-right .wheel i {
-    font-size: 32px;
+    font-size: 30px;
     cursor: pointer;
     color: var(--nav-fnt-primary-color);
     transition: all 0.3s linear;
@@ -122,7 +122,7 @@ nav .nav-links a:hover {
 }
 
 .nav-right .wheel i:hover {
-    transform: rotate(360deg);
+    transform: rotate(720deg);
 }
 
 .info-window {
@@ -579,7 +579,8 @@ nav .nav-links a:hover {
 .percent-circles {
     width: 40%;
     border-radius: 30px;
-    background: rgba(255, 255, 255, 0.626);
+    background: rgba(255, 255, 255, 0.653);
+    border: 3px solid gray;
     backdrop-filter: blur(5px);
     padding: 0 100px 20px;
     margin-bottom: 25px;
@@ -634,7 +635,7 @@ nav .nav-links a:hover {
 
     &::before {
         content: attr(aria-valuenow) '%';
-        background: rgb(173, 172, 172);
+        background: rgb(158, 157, 157);
         border-radius: inherit;
         width: calc(100% - var(--bar-width));
         aspect-ratio: 1 / 1;
@@ -650,8 +651,6 @@ nav .nav-links a:hover {
     }
 
 }
-
-
 
 
 footer {

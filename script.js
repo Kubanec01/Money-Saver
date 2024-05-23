@@ -371,13 +371,14 @@ function allCategoriesValueCounting() {
     var funValue = getNumfromLocalStorage('funValue');
     var otherValue = getNumfromLocalStorage('otherValue');
     var budgetValue = getNumfromLocalStorage('budgetValue');
-    // Bilance Progress Bar Function
+    // Goal Progress Bar Function
     var catValue = foodValue + homeValue + fuelValue + funValue + otherValue;
-    var bilanceBudget = budgetValue - catValue;
-    var percentageBudget = Math.round((bilanceBudget / budgetValue) * 100);
-    if (isNaN(percentageBudget) || percentageBudget < 0) {
-        percentageBudget = 0;
+    var goalBudget = budgetValue - catValue;
+    var percentageGoal = Math.round((goalBudget / budgetValue) * 100);
+    if (isNaN(percentageGoal) || percentageGoal < 0) {
+        percentageGoal = 0;
     }
+    var goalGradient = "#6e1da7 ".concat(percentageGoal, "%, transparent ").concat(percentageGoal, "%");
     // Fun & Other Progress Bar function
     var funAndOtherValue = funValue + otherValue;
     var percentageCosts = Math.round((funAndOtherValue / catValue) * 100);
@@ -387,6 +388,7 @@ function allCategoriesValueCounting() {
     else if (percentageCosts > 100) {
         percentageCosts = 100;
     }
+    var funAndOtherGradient = "#6e1da7 ".concat(percentageCosts, "%, transparent ").concat(percentageCosts, "%");
     // Spent Progress Bar function
     var percentageSpent = Math.round((catValue / budgetValue) * 100);
     if (isNaN(percentageSpent)) {
@@ -395,24 +397,26 @@ function allCategoriesValueCounting() {
     else if (percentageSpent > 100) {
         percentageSpent = 100;
     }
-    var gradient = "#6e1da7 ".concat(percentageSpent, "%, transparent ").concat(percentageSpent, "%");
+    var spentGradient = "#6e1da7 ".concat(percentageSpent, "%, transparent ").concat(percentageSpent, "%");
     return {
-        percentageBudget: percentageBudget,
+        percentageGoal: percentageGoal,
+        goalGradient: goalGradient,
         percentageCosts: percentageCosts,
-        gradient: gradient,
+        spentGradient: spentGradient,
         funAndOtherValue: funAndOtherValue,
         percentageSpent: percentageSpent,
+        funAndOtherGradient: funAndOtherGradient,
         catValue: catValue,
-        bilanceBudget: bilanceBudget,
+        goalBudget: goalBudget,
     };
 }
 // Spent Progress Bar
 var spentProgressBar = document.querySelector('.spent-progressbar');
 function enableBudgetBar() {
-    var _a = allCategoriesValueCounting(), percentageSpent = _a.percentageSpent, catValue = _a.catValue, gradient = _a.gradient;
+    var _a = allCategoriesValueCounting(), percentageSpent = _a.percentageSpent, catValue = _a.catValue, spentGradient = _a.spentGradient;
     if (spentProgressBar) {
         spentProgressBar.setAttribute('role', "progressBar");
-        spentProgressBar.setAttribute('style', "background: conic-gradient(".concat(gradient, ");"));
+        spentProgressBar.setAttribute('style', "background: conic-gradient(".concat(spentGradient, ");"));
         spentProgressBar.setAttribute('aria-valuenow', percentageSpent.toString());
         spentProgressBar.setAttribute('aria-live', "".concat(catValue));
     }
@@ -421,9 +425,10 @@ enableBudgetBar();
 // Investment Progress Bar
 var investmentProgressBar = document.querySelector('.investment-progressbar');
 function enableInvestmentBar() {
-    var _a = allCategoriesValueCounting(), percentageCosts = _a.percentageCosts, funAndOtherValue = _a.funAndOtherValue;
+    var _a = allCategoriesValueCounting(), percentageCosts = _a.percentageCosts, funAndOtherValue = _a.funAndOtherValue, funAndOtherGradient = _a.funAndOtherGradient;
     if (investmentProgressBar) {
         investmentProgressBar.setAttribute('role', 'progressBar');
+        investmentProgressBar.setAttribute('style', "background: conic-gradient(".concat(funAndOtherGradient, ");"));
         investmentProgressBar.setAttribute('aria-valuenow', percentageCosts.toString());
         investmentProgressBar.setAttribute('aria-live', funAndOtherValue.toString());
     }
@@ -432,11 +437,12 @@ enableInvestmentBar();
 // Goal progress bar
 var goalProgressBar = document.querySelector('.goal-progressbar');
 function enableGoalBar() {
-    var _a = allCategoriesValueCounting(), percentageBudget = _a.percentageBudget, bilanceBudget = _a.bilanceBudget;
+    var _a = allCategoriesValueCounting(), percentageGoal = _a.percentageGoal, goalBudget = _a.goalBudget, goalGradient = _a.goalGradient;
     if (goalProgressBar) {
         goalProgressBar.setAttribute('role', 'progressBar');
-        goalProgressBar.setAttribute('aria-valuenow', percentageBudget.toString());
-        goalProgressBar.setAttribute('aria-live', bilanceBudget.toString());
+        goalProgressBar.setAttribute('style', "background: conic-gradient(".concat(goalGradient, ");"));
+        goalProgressBar.setAttribute('aria-valuenow', percentageGoal.toString());
+        goalProgressBar.setAttribute('aria-live', goalBudget.toString());
     }
 }
 enableGoalBar();

@@ -445,13 +445,16 @@ function allCategoriesValueCounting () {
     const otherValue: number = getNumfromLocalStorage('otherValue');
     const budgetValue: number = getNumfromLocalStorage('budgetValue');
 
-    // Bilance Progress Bar Function
+    // Goal Progress Bar Function
     const catValue = foodValue + homeValue + fuelValue + funValue + otherValue;
-    const bilanceBudget = budgetValue - catValue;
-    let percentageBudget = Math.round((bilanceBudget / budgetValue) * 100);
-    if (isNaN(percentageBudget) || percentageBudget < 0) {
-        percentageBudget = 0;
+    const goalBudget = budgetValue - catValue;
+    let percentageGoal = Math.round((goalBudget / budgetValue) * 100);
+    if (isNaN(percentageGoal) || percentageGoal < 0) {
+        percentageGoal = 0;
     }
+
+    const goalGradient = `#6e1da7 ${percentageGoal}%, transparent ${percentageGoal}%`;
+
 
     // Fun & Other Progress Bar function
     const funAndOtherValue = funValue + otherValue;
@@ -461,6 +464,8 @@ function allCategoriesValueCounting () {
     } else if (percentageCosts > 100) {
         percentageCosts = 100;
     }
+
+    const funAndOtherGradient = `#6e1da7 ${percentageCosts}%, transparent ${percentageCosts}%`;
    
     // Spent Progress Bar function
     let percentageSpent = Math.round((catValue / budgetValue) * 100);
@@ -470,17 +475,19 @@ function allCategoriesValueCounting () {
         percentageSpent = 100;
     }
 
-    const gradient = `#6e1da7 ${percentageSpent}%, transparent ${percentageSpent}%`;
+    const spentGradient = `#6e1da7 ${percentageSpent}%, transparent ${percentageSpent}%`;
 
 
     return {
-        percentageBudget,
+        percentageGoal,
+        goalGradient,
         percentageCosts,
-        gradient,
+        spentGradient,
         funAndOtherValue,
         percentageSpent,
+        funAndOtherGradient,
         catValue,
-        bilanceBudget,
+        goalBudget,
     };
 
 }
@@ -490,10 +497,10 @@ function allCategoriesValueCounting () {
 const spentProgressBar = document.querySelector('.spent-progressbar');
 
 function enableBudgetBar(): void {
-    const { percentageSpent, catValue, gradient } = allCategoriesValueCounting();
+    const { percentageSpent, catValue, spentGradient } = allCategoriesValueCounting();
     if (spentProgressBar) {
         spentProgressBar.setAttribute('role', "progressBar");
-        spentProgressBar.setAttribute('style', `background: conic-gradient(${gradient});`);
+        spentProgressBar.setAttribute('style', `background: conic-gradient(${spentGradient});`);
         spentProgressBar.setAttribute('aria-valuenow', percentageSpent.toString());
         spentProgressBar.setAttribute('aria-live', `${catValue}`);
     }
@@ -505,9 +512,10 @@ enableBudgetBar();
 const investmentProgressBar = document.querySelector('.investment-progressbar');
 
 function enableInvestmentBar(): void {
-    const {percentageCosts, funAndOtherValue} = allCategoriesValueCounting();
+    const {percentageCosts, funAndOtherValue, funAndOtherGradient} = allCategoriesValueCounting();
     if (investmentProgressBar) {
         investmentProgressBar.setAttribute('role', 'progressBar');
+        investmentProgressBar.setAttribute('style', `background: conic-gradient(${funAndOtherGradient});`);
         investmentProgressBar.setAttribute('aria-valuenow', percentageCosts.toString());
         investmentProgressBar.setAttribute('aria-live', funAndOtherValue.toString());
     }
@@ -519,11 +527,12 @@ enableInvestmentBar();
 const goalProgressBar = document.querySelector('.goal-progressbar');
 
 function enableGoalBar(): void {
-    const {percentageBudget, bilanceBudget} = allCategoriesValueCounting();
+    const {percentageGoal, goalBudget, goalGradient} = allCategoriesValueCounting();
     if (goalProgressBar) {
         goalProgressBar.setAttribute('role', 'progressBar');
-        goalProgressBar.setAttribute('aria-valuenow', percentageBudget.toString());
-        goalProgressBar.setAttribute('aria-live', bilanceBudget.toString());
+        goalProgressBar.setAttribute('style', `background: conic-gradient(${goalGradient});`);
+        goalProgressBar.setAttribute('aria-valuenow', percentageGoal.toString());
+        goalProgressBar.setAttribute('aria-live', goalBudget.toString());
     }
 }
 enableGoalBar();
