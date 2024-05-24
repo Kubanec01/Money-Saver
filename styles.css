@@ -81,7 +81,6 @@ nav .nav-links {
     display: flex;
     justify-content: center;
     gap: 50px;
-    flex: 1;
     text-align: center;
 }
 
@@ -98,7 +97,7 @@ nav .nav-links a:hover {
     transform: scale(1.2);
 }
 
-.nav-right {
+nav .nav-right {
     flex: 1;
     height: 100%;
     display: flex;
@@ -108,11 +107,11 @@ nav .nav-links a:hover {
     text-shadow: 0 0 10px rgb(255, 255, 255, 0.1);
 }
 
-.nav-right .wheel {
+nav .nav-right .wheel {
     padding: 40px;
 }
 
-.nav-right .wheel i {
+nav .nav-right .wheel i {
     font-size: 30px;
     cursor: pointer;
     color: var(--nav-fnt-primary-color);
@@ -698,4 +697,295 @@ footer .footer-right a:hover {
 
 footer .footer-right a:active {
     transform: scale(0.8);
+}
+
+
+
+/* Media queries */
+
+@media screen and (width < 1217px) {
+    .welcome h2 {
+        font-size: 110px;
+    }
+}
+
+@media screen and (width < 1150px) {
+
+    .categories {
+        flex-wrap: wrap;
+    }
+}
+
+
+@media screen and (width < 1111px) {
+    .welcome h2 {
+        font-size: 100px;
+    }
+}
+
+
+
+@media screen and (width < 1015px) {
+    .welcome h2 {
+        font-size: 90px;
+    }
+
+.num-selector,
+.goal-selector {
+    padding: 15px 200px;
+}
+
+.goal-selector {
+    background: linear-gradient(to bottom,
+    #360a7c,
+    #420d8b,
+    #330858);
+    border: 2px solid rgba(16, 3, 23, 0.422);
+}
+
+.num-selector h3,
+.goal-selector h3 {
+    font-size: 21px;
+}
+
+.num-selector input,
+.goal-selector input {
+    font-size: 25px;
+    width: 120px;
+}
+
+}
+
+
+@media screen and (width < 910px) {
+
+     nav .nav-links {
+        margin-left: 40px;
+     }
+
+.num-selector,
+.goal-selector {
+    padding: 15px 170px;
+}
+
+.goal-selector {
+    background: linear-gradient(to bottom,
+    #360a7c,
+    #420d8b,
+    #330858);
+    border: 2px solid rgba(16, 3, 23, 0.422);
+}
+
+.num-selector h3,
+.goal-selector h3 {
+    font-size: 19px;
+}
+
+.num-selector input,
+.goal-selector input {
+    font-size: 23px;
+    width: 100px;
+}
+
+.num-selector i,
+.goal-selector i {
+    font-size: 23px;
+    right: 32px;
+}
+
+}
+
+
+@media screen and (width < 780px) {
+    .introducing-container {
+        width: 70%;
+        padding: 30px;
+    }
+}
+
+
+@media screen and (width < 768px) {
+
+    .num-selector,
+.goal-selector {
+    padding: 10px 150px;
+    margin-right: 10px;
+}
+
+.goal-selector {
+    background: linear-gradient(to bottom,
+    #360a7c,
+    #420d8b,
+    #330858);
+    border: 2px solid rgba(16, 3, 23, 0.422);
+}
+
+.num-selector h3,
+.goal-selector h3 {
+    font-size: 17px;
+}
+
+.num-selector input,
+.goal-selector input {
+    font-size: 22px;
+    width: 80px;
+}
+
+.num-selector i,
+.goal-selector i {
+    font-size: 22px;
+    right: 32px;
+}
+
+}
+
+
+@media screen and (width < 750px) {
+
+    nav .nav-right .wheel i {
+        font-size: 25px;
+        margin-bottom: 5px;
+    }
+
+    .welcome h2 {
+        font-size: 70px;
+    }
+
+}
+
+@media screen and (width < 715px) {
+    .introducing-container {
+        width: 90%;
+        padding: 25px;
+    }
+}
+
+@media screen and (width < 670px) {
+
+    .num-selector,
+    .goal-selector {
+        padding: 10px 130px;
+        margin-right: 0;
+    }
+    
+    .goal-selector {
+        background: linear-gradient(to bottom,
+        #360a7c,
+        #420d8b,
+        #330858);
+        border: 2px solid rgba(16, 3, 23, 0.422);
+    }
+    
+    .num-selector h3,
+    .goal-selector h3 {
+        font-size: 16px;
+    }
+    
+    .num-selector input,
+    .goal-selector input {
+        font-size: 25px;
+        width: 80px;
+    }
+    
+    .num-selector i,
+    .goal-selector i {
+        display: none;
+    }
+
+}
+
+@media screen and (width < 635px) {
+
+    nav .nav-right {
+        padding: 0;
+    }
+
+    .welcome h2 {
+        font-size: 60px;
+    }
+}
+
+@media screen and (width < 600px) {
+
+    nav .nav-right .wheel i {
+        font-size: 18px;
+        margin-bottom: 5px;
+        flex: 0;
+    }
+
+    nav .nav-links {
+        margin-left: 10px;
+    }
+
+    nav .nav-links a {
+        font-size: 15px;
+    }
+
+    .nav-left h1 {
+        font-size: 17px;
+    }
+
+    nav .nav-left .nav-logo {
+        margin-left: 0;
+    }
+
+    nav .nav-left .nav-logo i  {
+        font-size: 23px;
+    }
+
+}
+
+@media screen and (width < 590px) {
+
+    .categories .delete-box{
+        width: 40%;
+        height: 45px;
+        margin-top: 4px;
+        border-radius: 50px;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .money-counter {
+        height: 220px;
+    }
+
+    .money-inputs {
+        flex-direction: column;
+        padding: 50px;
+        gap: 30px;
+    }
+
+    .num-selector,
+    .goal-selector {
+        padding: 15px 160px;
+    }
+    
+    .goal-selector {
+        background: linear-gradient(to bottom,
+        #360a7c,
+        #420d8b,
+        #330858);
+        border: 2px solid rgba(16, 3, 23, 0.422);
+    }
+    
+    .num-selector h3,
+    .goal-selector h3 {
+        font-size: 17px;
+    }
+    
+    .num-selector input,
+    .goal-selector input {
+        font-size: 22px;
+        width: 110px;
+    }
+    
+    .num-selector i,
+    .goal-selector i {
+        font-size: 23px;
+        right: 22px;
+        display: flex;
+    }
+
 }
