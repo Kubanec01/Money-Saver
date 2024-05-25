@@ -30,6 +30,8 @@ body {
     var(--body-primary-color),
     var(--body-secondary-color));
     overflow-x: hidden;
+    max-width: 1265px;
+    margin: 0 auto;
 }
 
 nav {
@@ -42,6 +44,8 @@ nav {
     position: fixed;
     top: 0;
     z-index: 1000;
+    max-width: 1265px !important;
+    margin: 0 auto;
 }
 
 nav .nav-left {
@@ -587,6 +591,7 @@ nav .nav-right .wheel i {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .spent-container,
@@ -598,7 +603,7 @@ nav .nav-right .wheel i {
     justify-content: center;
     width: 100%;
     margin: 0 auto;
-    padding: 18px 20px;
+    padding: 18px 0;
     margin-bottom: 15px;
     position: relative;
 }
@@ -607,13 +612,13 @@ nav .nav-right .wheel i {
 .investment-container h3,
 .goal-container h3 {
     font-size: 20px;
-    padding: 10px;
+    padding: 9px;
     color: var(--pro-bar-fnt-color);
 }
 
 
 [role="progressBar"] {
-    --size: 135px;
+    --size: 130px;
     --bar-width: 25px;
 
     font-size: 2rem;
@@ -649,6 +654,12 @@ nav .nav-right .wheel i {
         font-size: 1.6875rem;
     }
 
+}
+
+.spent-progressbar,
+.investment-progressbar,
+.goal-progressbar {
+    margin: 0 100%;
 }
 
 
@@ -702,7 +713,6 @@ footer .footer-right a:active {
 
 
 /* Media queries */
-
 @media screen and (width < 1217px) {
     .welcome h2 {
         font-size: 110px;
@@ -714,6 +724,19 @@ footer .footer-right a:active {
     .categories {
         flex-wrap: wrap;
     }
+
+    .categories-results{
+        margin-bottom: 30px;
+    }
+
+    .spent-container h3,
+    .investment-container h3,
+    .goal-container h3 {
+        white-space: nowrap;
+    }
+
+
+
 }
 
 
@@ -721,8 +744,33 @@ footer .footer-right a:active {
     .welcome h2 {
         font-size: 100px;
     }
+
+    .categories-results{
+        margin-bottom: 50px;
+    }
+
+    .categories-results .food, .categories-results .home, .categories-results .fuel, .categories-results .fun, .categories-results .other {
+        width: 130%;
+    }
+
+
 }
 
+@media screen and (width < 1045px) {
+
+
+    .money-counting .category h3 {
+        font-size: 16px;
+    }
+    
+    .money-counting .category p {
+        width: 30%;
+        background: transparent;
+        border: none;
+        font-size: 20px;
+    }
+
+}
 
 
 @media screen and (width < 1015px) {
@@ -733,6 +781,10 @@ footer .footer-right a:active {
 .num-selector,
 .goal-selector {
     padding: 15px 200px;
+}
+
+.num-selector {
+    margin-left: 40px;
 }
 
 .goal-selector {
@@ -756,8 +808,28 @@ footer .footer-right a:active {
 
 }
 
+@media screen and (width < 980) {
+
+
+
+}
+
+
+@media screen and (width < 950px) {
+
+
+    .categories-results{
+        margin-top: -250px;
+    }
+
+}
+
 
 @media screen and (width < 910px) {
+
+    .categories-results .food, .categories-results .home, .categories-results .fuel, .categories-results .fun, .categories-results .other {
+        width: 160%;
+    }
 
      nav .nav-links {
         margin-left: 40px;
@@ -793,6 +865,96 @@ footer .footer-right a:active {
     right: 32px;
 }
 
+.categories-results{
+    margin-top: -230px;
+}
+
+}
+
+@media screen and (width < 875px) {
+
+
+    footer {
+        padding: 0;
+    }
+
+    footer .footer-left {
+        padding: 24px;
+        padding-left: 30px;
+    }
+
+    footer .footer-left h4 {
+        font-size: 22px;
+    }
+
+    footer .footer-left h4 span {
+        font-size: 24px;
+    }
+
+    footer .footer-right {
+        padding: 50px 34px;
+    }
+
+}
+
+@media screen and (width < 840px) {
+
+    .categories-results .food, .categories-results .home, .categories-results .fuel, .categories-results .fun, .categories-results .other {
+        width: 175%;
+    }
+}
+
+@media screen and (width < 800px) {
+        
+    .results-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .money-counting .category p {
+        width: auto;
+        background: transparent;
+        border: none;
+        font-size: 20px;
+        color: white;
+        position: relative;
+        margin-top: 2px;
+    }
+
+    .categories-results {
+        margin: 10px auto 50px;
+        width: 100%;
+    }
+    
+    .categories-results .food, .categories-results .home, .categories-results .fuel, .categories-results .fun, .categories-results .other {
+        width: 100%;
+        padding: 7px 20px;
+        margin: 10px auto;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .percent-circles {
+        width: 100%;
+        backdrop-filter: blur(5px);
+        padding: 0 100px 20px;
+        margin-bottom: 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    .spent-container,
+.investment-container,
+.goal-container {
+    margin: 10px 0;
+}
+
 }
 
 
@@ -801,6 +963,7 @@ footer .footer-right a:active {
         width: 70%;
         padding: 30px;
     }
+
 }
 
 
@@ -858,7 +1021,40 @@ footer .footer-right a:active {
         width: 90%;
         padding: 25px;
     }
+
+
 }
+
+@media screen and (width < 680px) {
+
+    .spent-container,
+.investment-container,
+.goal-container {
+    width: 120px;
+}
+
+.spent-container h3,
+.investment-container h3,
+.goal-container h3 {
+    font-size: 15px;
+}
+
+[role="progressBar"] {
+    --size: 100px;
+    --bar-width: 15px;
+
+    font-size: 1.6rem;
+
+    
+    &::after {
+        bottom: -32px;
+        font-size: 1.4rem;
+    }
+
+}
+
+}
+
 
 @media screen and (width < 670px) {
 
@@ -866,6 +1062,10 @@ footer .footer-right a:active {
     .goal-selector {
         padding: 10px 130px;
         margin-right: 0;
+    }
+
+    .num-selector {
+        margin-left: 15px;
     }
     
     .goal-selector {
@@ -903,6 +1103,21 @@ footer .footer-right a:active {
     .welcome h2 {
         font-size: 60px;
     }
+
+    .welcome {
+        width: 100%;
+        padding: 250px 50px 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        opacity: 0;
+    }
+
+    footer .footer-right a {
+        font-size: 22px;
+    }
+
 }
 
 @media screen and (width < 600px) {
@@ -987,5 +1202,67 @@ footer .footer-right a:active {
         right: 22px;
         display: flex;
     }
+}
 
+@media screen and (width < 575px) {
+
+    .percent-circles {
+        flex-direction: column;
+        width: 80%;
+        padding-bottom: 40px;
+        gap: 0;
+    }
+
+    .spent-container,
+    .investment-container,
+    .goal-container {
+        width: 100%;
+    }
+    
+    .spent-container h3,
+    .investment-container h3,
+    .goal-container h3 {
+        font-size: 20px;
+    }
+    
+    [role="progressBar"] {
+        --size: 130px;
+        --bar-width: 20px;
+    
+        font-size: 1.8rem;
+    
+        
+        &::after {
+            bottom: -36px;
+            font-size: 1.8rem;
+        }
+    
+    }
+
+}
+
+
+@media screen and (width < 550px) {
+    
+    .categories-results .food, .categories-results .home, .categories-results .fuel, .categories-results .fun, .categories-results .other {
+        width: 150%;
+        padding: 7px 20px;
+        margin: 10px 0 20px -80px;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+
+    footer .footer-left h4 {
+        color: rgb(255, 255, 255, 0.9);
+        font-size: 18px;
+    }
+    
+    footer .footer-left h4 span {
+        font-size: 19px;
+    }
+
+    footer .footer-right a {
+        font-size: 18px;
+    }
 }
