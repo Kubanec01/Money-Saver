@@ -536,3 +536,16 @@ function enableGoalBar(): void {
     }
 }
 enableGoalBar();
+
+// Show Links Function 
+const menuBars = document.querySelector('.bx-menu') as HTMLElement;
+const menuLink = document.querySelector('.menu-links') as HTMLElement;
+
+menuBars.addEventListener('click', () => {
+    if (menuBars.classList.contains('bx-menu')) {
+        menuBars.classList.replace('bx-menu', 'bx-x');
+    } else {
+        menuBars.classList.replace('bx-x', 'bx-menu');
+    }
+    menuLink.classList.toggle('show-links');
+})

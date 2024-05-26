@@ -101,6 +101,56 @@ nav .nav-links a:hover {
     transform: scale(1.2);
 }
 
+
+nav .links-menu {
+    height: 100%;
+    align-items: center;
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    margin-left: 25px;
+    display: none;
+}
+
+nav .links-menu i {
+    font-size: 30px;
+}
+
+.menu-links {
+    width: 30%;
+    padding: 60px;
+    background: rgba(0, 0, 0, 0.929);
+    border: 3px solid rgba(135, 32, 199, 0.8);
+    border-radius: 15px;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    left: 25px;
+    top: 65px;
+    z-index: 1000;
+    transform: translateX(-150%);
+    transition: transform 0.3s ease;
+}
+
+.menu-links.show-links {
+    transform: translateX(0);
+}
+
+.menu-links a {
+    color: rgba(255, 255, 255, 0.916);
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.menu-links a:active {
+    color: #1398cd;
+}
+
 nav .nav-right {
     flex: 1;
     height: 100%;
@@ -455,7 +505,7 @@ nav .nav-right .wheel i {
     background: transparent;
     border: 3px solid #3566a752;
     padding: 25px;
-    margin: 4.8% auto;
+    margin: 18px auto;
     width: 80%;
     text-align: center;
 }
@@ -719,6 +769,28 @@ footer .footer-right a:active {
     }
 }
 
+@media screen and (width < 1200px) {
+    
+
+    .modal .modal-content {
+        padding: 30px;
+        margin: 30px auto;
+        width: 85%;
+    }
+
+
+    .modal .modal-content p {
+        margin: 2px auto 0; 
+        font-size: 15px;
+    }
+        
+    .modal .modal-content .button-content {
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+}
+
+
 @media screen and (width < 1150px) {
 
     .categories {
@@ -735,12 +807,45 @@ footer .footer-right a:active {
         white-space: nowrap;
     }
 
+    .categories-results {
+        margin-top: -160px;
+    }
 
+}
+
+@media screen and (width < 1120px) {
+
+    .modal {
+        height: 180px;
+    }
+
+    .modal .modal-content {
+        padding: 15px;
+        margin: 20px auto; 
+        width: 90%;
+    }
+
+
+    .modal .modal-content p {
+        margin: 1px auto 0; 
+        font-size: 14px;
+    }
+        
+    .modal .modal-content .button-content {
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+    
+    .modal .modal-content .button-content button {
+        width: 35%;
+        height: 24px;
+    }
 
 }
 
 
 @media screen and (width < 1111px) {
+
     .welcome h2 {
         font-size: 100px;
     }
@@ -768,6 +873,12 @@ footer .footer-right a:active {
         background: transparent;
         border: none;
         font-size: 20px;
+    }
+
+        .modal .modal-content {
+        padding: 15px;
+        margin: 13px auto; 
+        width: 90%;
     }
 
 }
@@ -808,20 +919,26 @@ footer .footer-right a:active {
 
 }
 
-@media screen and (width < 980) {
 
+@media screen and (width < 990px) {
 
-
-}
-
-
-@media screen and (width < 950px) {
-
-
-    .categories-results{
-        margin-top: -250px;
+        .modal {
+        height: 180px;
     }
 
+    .modal .modal-content {
+        padding: 15px;
+        margin: 10px auto; 
+        width: 90%;
+    }
+} 
+
+@media screen and (width < 950px) {
+    .modal .modal-content {
+        padding: 15px;
+        margin: 12px auto; 
+        width: 90%;
+    }
 }
 
 
@@ -864,12 +981,39 @@ footer .footer-right a:active {
     font-size: 23px;
     right: 32px;
 }
-
-.categories-results{
-    margin-top: -230px;
 }
 
+
+@media screen and (width < 890px) {
+    .modal {
+        margin: 0 auto;
+        top: 30%;
+        width: 35%;
+        height: 270px;
+    }
+
+    .modal .modal-content {
+        margin: 35px auto;
+        padding: 30px;
+        width: 90%;
+        text-align: center;
+    }
+        
+    .modal .modal-content .button-content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+
+    .modal .modal-content .button-content button {
+        width: 30%;
+        height: 30px;
+    }
+
 }
+
 
 @media screen and (width < 875px) {
 
@@ -894,18 +1038,66 @@ footer .footer-right a:active {
     footer .footer-right {
         padding: 50px 34px;
     }
+    
 
+    .info-window {
+        height: 300px;
+        width: 300px;
+        top: 50px;
+    }
+
+    .info-window .info-box {
+        padding: 20px 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .info-window .info-box h4 {
+        font-size: 15px;
+    }
+    
+    .info-window .info-box ol li {
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
 }
+
+
+@media screen and (width < 860px) {
+    .modal {
+        margin: 0 auto;
+        top: 30%;
+        width: 45%;
+        height: 270px;
+    }
+
+    .modal .modal-content {
+        margin: 25px auto;
+        padding: 40px;
+    }
+
+    .modal .modal-content p {
+        font-size: 15px;
+    }
+}
+
 
 @media screen and (width < 840px) {
 
     .categories-results .food, .categories-results .home, .categories-results .fuel, .categories-results .fun, .categories-results .other {
         width: 175%;
     }
+
+    .modal .modal-content {
+        padding: 40px;
+        margin: 25px auto; 
+        width: 90%;
+    }
 }
 
-@media screen and (width < 800px) {
-        
+@media screen and (width < 800px) {        
     .results-container {
         display: flex;
         justify-content: center;
@@ -954,7 +1146,6 @@ footer .footer-right a:active {
 .goal-container {
     margin: 10px 0;
 }
-
 }
 
 
@@ -1005,6 +1196,12 @@ footer .footer-right a:active {
 
 @media screen and (width < 750px) {
 
+    .modal .modal-content {
+        padding: 35px;
+        margin: 22px auto; 
+        width: 90%;
+    }
+
     nav .nav-right .wheel i {
         font-size: 25px;
         margin-bottom: 5px;
@@ -1012,7 +1209,7 @@ footer .footer-right a:active {
 
     .welcome h2 {
         font-size: 70px;
-    }
+    } 
 
 }
 
@@ -1022,8 +1219,25 @@ footer .footer-right a:active {
         padding: 25px;
     }
 
+    .modal {
+        margin: 0 auto;
+        top: 30%;
+        width: 65%;
+        height: 270px;
+    }
+
+    .modal .modal-content {
+        margin: 45px auto;
+        padding: 30px;
+    }
+
+    .modal .modal-content p {
+        font-size: 15px;
+    }
+
 
 }
+
 
 @media screen and (width < 680px) {
 
@@ -1050,9 +1264,14 @@ footer .footer-right a:active {
         bottom: -32px;
         font-size: 1.4rem;
     }
-
 }
 
+.info-window {
+    height: 300px;
+    width: 300px;
+    top: 45px;
+    right: 80px;
+}
 }
 
 
@@ -1094,6 +1313,7 @@ footer .footer-right a:active {
 
 }
 
+
 @media screen and (width < 635px) {
 
     nav .nav-right {
@@ -1117,8 +1337,8 @@ footer .footer-right a:active {
     footer .footer-right a {
         font-size: 22px;
     }
-
 }
+
 
 @media screen and (width < 600px) {
 
@@ -1236,7 +1456,28 @@ footer .footer-right a:active {
             bottom: -36px;
             font-size: 1.8rem;
         }
+    }
+
+    .info-window {
+        height: 260px;
+        width: 250px;
+        top: 50px;
+    }
     
+    .info-window .info-box h4 {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+    
+    .info-window .info-box ol li {
+        font-size: 10px;
+        margin-bottom: 12px;
+    }
+
+    .modal .modal-content {
+        padding: 35px;
+        margin: 28px auto; 
+        width: 90%;
     }
 
 }
@@ -1265,4 +1506,29 @@ footer .footer-right a:active {
     footer .footer-right a {
         font-size: 18px;
     }
+}
+
+@media screen and (width < 525px) {
+
+    .modal .modal-content {
+        padding: 35px;
+        margin: 20px auto; 
+        width: 90%;
+    }
+}
+
+@media screen and (width < 500px) {
+
+    nav .nav-links {
+        display: none !important;
+    }
+    
+    nav .nav-logo {
+        display: none !important;
+    }
+
+    nav .links-menu {
+        display: flex;
+    }
+
 }

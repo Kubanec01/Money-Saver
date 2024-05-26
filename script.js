@@ -446,3 +446,15 @@ function enableGoalBar() {
     }
 }
 enableGoalBar();
+// Show Links Function 
+var menuBars = document.querySelector('.bx-menu');
+var menuLink = document.querySelector('.menu-links');
+menuBars.addEventListener('click', function () {
+    if (menuBars.classList.contains('bx-menu')) {
+        menuBars.classList.replace('bx-menu', 'bx-x');
+    }
+    else {
+        menuBars.classList.replace('bx-x', 'bx-menu');
+    }
+    menuLink.classList.toggle('show-links');
+});
