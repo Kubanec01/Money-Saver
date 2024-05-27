@@ -39,7 +39,6 @@ const infoBox = document.querySelector('.info-window') as HTMLElement;
     });
 
 
-
 // Categories Variables
 let newFoodCategoryValue: number = 0;
 let newHomeCategoryValue: number = 0;
