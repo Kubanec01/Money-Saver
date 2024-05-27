@@ -31,7 +31,7 @@ body {
     var(--body-secondary-color));
     overflow-x: hidden;
     max-width: 1265px;
-    min-width: 400px;
+    min-width: 390px;
     margin: 0 auto;
 }
 
