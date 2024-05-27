@@ -21,11 +21,13 @@ window.addEventListener('load', function () {
 // Information Container Function
 var questionMark = document.querySelector('.bx-question-mark');
 var infoBox = document.querySelector('.info-window');
-questionMark.addEventListener('mousemove', function () {
-    infoBox.style.setProperty('display', 'flex', 'important');
-});
-questionMark.addEventListener('mouseleave', function () {
-    infoBox.style.setProperty('display', 'none', 'important');
+questionMark.addEventListener('click', function () {
+    if (infoBox.style.getPropertyValue('display') === 'none' || !infoBox.style.getPropertyValue('display')) {
+        infoBox.style.setProperty('display', 'flex', 'important');
+    }
+    else {
+        infoBox.style.setProperty('display', 'none', 'important');
+    }
 });
 // Categories Variables
 var newFoodCategoryValue = 0;

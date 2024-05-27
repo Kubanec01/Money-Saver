@@ -31,7 +31,7 @@ body {
     var(--body-secondary-color));
     overflow-x: hidden;
     max-width: 1265px;
-    min-width: 390px;
+    min-width: 400px;
     margin: 0 auto;
 }
 
@@ -110,7 +110,7 @@ nav .nav-right {
     align-items: last baseline;
     justify-content: flex-end;
     margin-bottom: 35px;
-    text-shadow: 0 0 10px rgb(255, 255, 255, 0.1);
+    text-shadow: 0 0 10px #ffffff1a;
 }
 
 nav .nav-right .wheel {
@@ -124,10 +124,15 @@ nav .nav-right .wheel i {
     transition: all 0.3s linear;
     border: 2px solid var(--nav-fnt-primary-color);
     border-radius: 50%;
+    transition: transform 0.1s ease;
 }
 
 .nav-right .wheel i:hover {
-    transform: rotate(720deg);
+    transform: scale(1.1);
+}
+
+.nav-right .wheel i:active {
+    transform: scale(0.9);
 }
 
 .info-window {
@@ -146,7 +151,7 @@ nav .nav-right .wheel i {
     border: 2px solid rgb(255, 255, 255, 0.1);
     animation: opacity-up 0.3s;
 }
-
+    
 @keyframes opacity-up {
     0% {
         opacity: 0%;
@@ -1555,6 +1560,16 @@ footer .footer-right a:active {
         font-size: 18px;
         margin-bottom: 10px;
         flex: 0;
+    }
+
+    .categories-results .food, .categories-results .home, .categories-results .fuel, .categories-results .fun, .categories-results .other {
+        width: 260px;
+        padding: 5px 20px;
+        margin: 10px 0 20px -80px;
+    }
+
+    .money-counting .category h3 {
+        font-size: 13px;
     }
 
 }

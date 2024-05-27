@@ -30,13 +30,13 @@ window.addEventListener('load', () => {
 const questionMark = document.querySelector('.bx-question-mark') as HTMLElement;
 const infoBox = document.querySelector('.info-window') as HTMLElement;
 
-    questionMark.addEventListener('mousemove', () => {
+questionMark.addEventListener('click', () => {
+    if (infoBox.style.getPropertyValue('display') === 'none' || !infoBox.style.getPropertyValue('display')) {
         infoBox.style.setProperty('display', 'flex', 'important');
-    });
-
-    questionMark.addEventListener('mouseleave', () => {
+    } else {
         infoBox.style.setProperty('display', 'none', 'important');
-    });
+    }
+});
 
 
 // Categories Variables
